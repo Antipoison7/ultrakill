@@ -2,7 +2,7 @@ This project aims to create a website for displaying speedrun times from the var
 
 Current Libraries
 
-org.xerial.sqlite-jdbc (SQLite JDBC library)
+org.xerial.sqlite-jdbc (SQLite JDBC library)<br>
 javalin (lightweight Java Webserver)
 
 <b>Libraries required as dependencies</b>
