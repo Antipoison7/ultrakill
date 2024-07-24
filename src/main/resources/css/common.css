@@ -1,5 +1,10 @@
 /* External CSS style file */
 
+@font-face {
+   font-family: 'UltrakillFont'; /*a name to be used later*/
+   src: url('./VCR_OSD_MONO_1.001.ttf'); /*URL to font*/
+}
+
 * {
    box-sizing: border-box;
 }
@@ -7,7 +12,12 @@
 body {
    font-family: Arial;
    padding: 10px;
-   background: #f1f1f1;
+   background: #434343;
+}
+
+a
+{
+   text-decoration: none;
 }
 
 /* Header (div) formatting */
@@ -26,6 +36,65 @@ body {
 /* Make the logo have a rounded edge */
 img.top-image {
    vertical-align: middle;
+}
+
+.flexBox
+{
+   display: flex;
+}
+
+.ultrakillTitleText
+{
+   font-family: UltrakillFont;
+   color: white;
+   text-align: center;
+}
+
+.ultrakillTitleImage
+{
+   width: 40%;
+   margin-left: 30%;
+   margin-right: 30%;
+}
+
+.ultrakillTitleButtonMain
+{
+   background-color: black;
+   border-radius: 0.7vw;
+   width: 25vw;
+   height: 4vw;
+   margin-top: 0.2vw;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.ultrakillTitleButtonMain:hover
+{
+   background-color: rgb(238, 238, 238);
+   border-radius: 0.7vw;
+   border: solid;
+   border-width: 0.2vw;
+   width: 25vw;
+   height: 4vw;
+   margin-top: 0.2vw;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.ultrakillTitleButtonMain h2
+{
+   font-family: UltrakillFont;
+   font-size: 200%;
+   color: white;
+   text-align: center;
+   margin:0px;
+}
+
+.titleAnchor
+{
+   color:black;
 }
 
 /* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */

@@ -30,7 +30,10 @@ public class PageIndex implements Handler {
     @Override
     public void handle(Context context) throws Exception {
         // Create a simple HTML webpage in a String
-        String html = "<html>";
+        String html = """
+                <!DOCTYPE html>
+                    <html>
+                """;
 
         // Add some Header information
         html = html + "<head>" + 
@@ -43,63 +46,63 @@ public class PageIndex implements Handler {
         // Add the body
         html = html + "<body>";
 
-        // Add the topnav
-        // This uses a Java v15+ Text Block
         html = html + """
-            <div class='topnav'>
-                <a href='/'>Homepage</a>
-                <a href='mission.html'>Our Mission</a>
-                <a href='page2A.html'>Sub Task 2.A</a>
-                <a href='page2B.html'>Sub Task 2.B</a>
-                <a href='page3A.html'>Sub Task 3.A</a>
-                <a href='page3B.html'>Sub Task 3.B</a>
-            </div>
-        """;
+                        <img src='ultrakillTitle.png' class='ultrakillTitleImage'>
+                        <h1 class='ultrakillTitleText'>-- EARLY ACCESS --</h1>
+                        <div class='flexBox' style='align-items:center;flex-direction:column;'>
+                            <a href='https://www.speedrun.com/ultrakill' class='titleAnchor'><div class='ultrakillTitleButtonMain' id='times'><h2 id='timesText'>View Times</h2></div></a>
+                            <a href='https://www.speedrun.com/ultrakill' class='titleAnchor'><div class='ultrakillTitleButtonMain' id='addTimes'><h2 id='addTimesText'>Add Times</h2></div></a>
+                            <a href='https://www.speedrun.com/ultrakill' class='titleAnchor'><div class='ultrakillTitleButtonMain' id='speedrun'><h2 id='speedText'>Speedrun.com</h2></div></a>
+                        </div>
+                """;
 
-        // Add header content block
-        html = html + """
-            <div class='header'>
-                <h1>
-                    <img src='logo.png' class='top-image' alt='RMIT logo' height='75'>
-                    Homepage
-                </h1>
-            </div>
-        """;
-
-        // Add Div for page Content
-        html = html + "<div class='content'>";
-
-        // Add HTML for the page content
-        html = html + """
-            <p>Homepage content</p>
-            """;
-
-        // Get the ArrayList of Strings of all countries
-        ArrayList<String> countryNames = getAllCountries();
-
-        // Add HTML for the country list
-        html = html + "<h1>All Countries in the food loss database</h1>" + "<ul>";
-
-        // Finally we can print out all of the countries
-        for (String name : countryNames) {
-            html = html + "<li>" + name + "</li>";
-        }
-
-        // Finish the List HTML
-        html = html + "</ul>";
-
-        // Close Content div
-        html = html + "</div>";
-
-        // Footer
-        html = html + """
-            <div class='footer'>
-                <p>COSC2803 - Studio Project Starter Code (Apr24)</p>
-            </div>
-        """;
-
+       
         // Finish the HTML webpage
-        html = html + "</body>" + "</html>";
+        html = html + "</body>";
+
+        html = html + """
+                <script>
+                document.getElementById('speedrun').onmouseover = function() \
+                {
+                    const speed = document.getElementById("speedText");
+                    speed.style.color = 'black';
+                }; 
+
+                document.getElementById('speedrun').onmouseout = function() \
+                {
+                    const speed = document.getElementById("speedText");
+                    speed.style.color = 'white';
+                }; 
+
+
+                document.getElementById('addTimes').onmouseover = function() \
+                {
+                    const times = document.getElementById("addTimesText");
+                    times.style.color = 'black';
+                }; 
+
+                document.getElementById('addTimes').onmouseout = function() \
+                {
+                    const times = document.getElementById("addTimesText");
+                    times.style.color = 'white';
+                }; 
+
+
+                document.getElementById('times').onmouseover = function() \
+                {
+                    const addTimes = document.getElementById("timesText");
+                    addTimes.style.color = 'black';
+                }; 
+
+                document.getElementById('times').onmouseout = function() \
+                {
+                    const addTimes = document.getElementById("timesText");
+                    addTimes.style.color = 'white';
+                }; 
+                </script>
+                """;
+
+        html = html + "</html>";
 
 
         // DO NOT MODIFY THIS
