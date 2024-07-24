@@ -20,7 +20,7 @@ import java.sql.Statement;
 public class JDBCConnection {
 
     // Name of database file (contained in database folder)
-    public static final String DATABASE = "jdbc:sqlite:database/foodloss.db";
+    public static final String DATABASE = "jdbc:sqlite:database/Ultrakill.db";
 
     /**
      * This creates a JDBC Object so we can keep talking to the database
