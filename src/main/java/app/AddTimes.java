@@ -22,10 +22,10 @@ import java.sql.Statement;
  * @author Halil Ali, 2024. email: halil.ali@rmit.edu.au
  */
 
-public class PageMission implements Handler {
+public class AddTimes implements Handler {
 
     // URL of this page relative to http://localhost:7001/
-    public static final String URL = "/mission.html";
+    public static final String URL = "/addTimes.html";
 
     @Override
     public void handle(Context context) throws Exception {
@@ -34,7 +34,7 @@ public class PageMission implements Handler {
 
         // Add some Head information
         html = html + "<head>" + 
-               "<title>Our Mission</title>";
+               "<title>Subtask 3.1</title>";
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
@@ -59,7 +59,7 @@ public class PageMission implements Handler {
         // Add header content block
         html = html + """
             <div class='header'>
-                <h1>Our Mission</h1>
+                <h1>Subtask 3.A</h1>
             </div>
         """;
 
@@ -68,27 +68,8 @@ public class PageMission implements Handler {
 
         // Add HTML for the page content
         html = html + """
-            <p>Mission page content</p>
+            <p>Subtask 3.A page content</p>
             """;
-
-        // This example uses JDBC to lookup the countries
-        JDBCConnection jdbc = new JDBCConnection();
-
-        // Next we will ask this *class* for the Countries
-        ArrayList<Country> countries = jdbc.getAllCountries();
-
-        // Add HTML for the countries list
-        html = html + "<h1>All Countries in the foodloss database (using JDBC Connection)</h1>" + "<ul>";
-
-        // Finally we can print out all of the Countries
-        for (Country country : countries) {
-            html = html + "<li>" + country.getM49Code()
-                        + " - " + country.getName() + "</li>";
-        }
-
-        // Finish the List HTML
-        html = html + "</ul>";
-
 
         // Close Content div
         html = html + "</div>";
