@@ -64,69 +64,7 @@ public class PageIndex implements Handler {
 
         html = html + """
                 <script>
-                document.getElementById('speedrun').onmouseover = function() \
-                {
-                    const speed = document.getElementById("speedText");
-                    speed.style.color = 'black';
-                }; 
-
-                document.getElementById('speedrun').onmouseout = function() \
-                {
-                    const speed = document.getElementById("speedText");
-                    speed.style.color = 'white';
-                }; 
-
-
-                document.getElementById('addTimes').onmouseover = function() \
-                {
-                    const times = document.getElementById("addTimesText");
-                    times.style.color = 'black';
-                }; 
-
-                document.getElementById('addTimes').onmouseout = function() \
-                {
-                    const times = document.getElementById("addTimesText");
-                    times.style.color = 'white';
-                }; 
-
-
-                document.getElementById('advtimes').onmouseover = function() \
-                {
-                    const times = document.getElementById("advtimesText");
-                    times.style.color = 'black';
-                }; 
-
-                document.getElementById('advtimes').onmouseout = function() \
-                {
-                    const times = document.getElementById("advtimesText");
-                    times.style.color = 'white';
-                }; 
-
-
-                document.getElementById('settings').onmouseover = function() \
-                {
-                    const addTimes = document.getElementById("settingsText");
-                    addTimes.style.color = 'black';
-                }; 
-
-                document.getElementById('settings').onmouseout = function() \
-                {
-                    const addTimes = document.getElementById("settingsText");
-                    addTimes.style.color = 'white';
-                }; 
-
-
-                document.getElementById('times').onmouseover = function() \
-                {
-                    const addTimes = document.getElementById("timesText");
-                    addTimes.style.color = 'black';
-                }; 
-
-                document.getElementById('times').onmouseout = function() \
-                {
-                    const addTimes = document.getElementById("timesText");
-                    addTimes.style.color = 'white';
-                }; 
+                 
                 </script>
                 """;
 

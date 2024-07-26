@@ -59,7 +59,7 @@ img.top-image {
 
 .ultrakillTitleButtonMain
 {
-   background-color: black;
+   background-color: rgb(0, 0, 0,0.5);
    border-radius: 0.7vw;
    width: 25vw;
    height: 4vw;
@@ -71,7 +71,7 @@ img.top-image {
 
 .ultrakillTitleButtonMain:hover
 {
-   background-color: rgb(238, 238, 238);
+   background-color: rgb(238, 238, 238,0.5);
    border-radius: 0.7vw;
    border: solid;
    border-width: 0.2vw;
@@ -95,6 +95,37 @@ img.top-image {
 .titleAnchor
 {
    color:black;
+}
+
+.settingChunk
+{
+   background-color: rgb(0, 0, 0,0.5);
+   padding: 2vw;
+   border-radius: 0.5vw;
+   margin-bottom: 0.5vw;
+}
+
+.settingChunk h3
+{
+   font-family: UltrakillFont;
+   color: whitesmoke;
+   margin-top: 0px;
+   margin-bottom: 0.5%;
+   font-size: 200%;
+}
+
+.button
+{
+   background-color: rgb(0, 0, 0,0.5);
+   border: solid white;
+   color: white;
+   width: 15vw;
+   height: 4vw;
+   padding: 0vw 2vw;
+   border-radius: 0.8vw;
+   font-family: UltrakillFont;
+   font-size: 200%;
+   cursor: pointer;
 }
 
 /* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */
