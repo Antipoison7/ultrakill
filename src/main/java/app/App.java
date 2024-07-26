@@ -44,6 +44,7 @@ public class App {
         app.get(AdvancedTimes.URL, new AdvancedTimes());
         app.get(AddTimes.URL, new AddTimes());
         app.get(Settings.URL, new Settings());
+        app.get(Intermediate.URL, new Intermediate());
 
         // Add / uncomment POST commands for any pages that need web form POSTS
         // app.post(PageIndex.URL, new PageIndex());
@@ -51,6 +52,7 @@ public class App {
         // app.post(PageST2B.URL, new PageST2B());
         app.post(AddTimes.URL, new AddTimes());
         // app.post(PageST3B.URL, new PageST3B());
+        app.post(Intermediate.URL, new Intermediate());
     }
 
 }

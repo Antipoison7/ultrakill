@@ -7,25 +7,73 @@ package app;
  */
 
 public class Speedrun {
-   // country Code
-   private String m49Code;
 
-   // country Name
-   private String name;
+   //Runner Id
+   private String Runner;
+   //Category Name
+   private String Category;
+   //Time
+   private String Time;
+   //Video Link
+   private String Video;
+   //Runner Comment
+   private String Comment;
+   //Level code (eg. 1-1)
+   private String Level;
+   //Difficulty code (1,2,3,4,5)
+   private String Difficulty;
+   //Exit (Normal, Secret)
+   private String Exit;
 
    /**
     * Create a Country and set the fields
     */
-   public Speedrun(String m49Code, String name) {
-      this.m49Code = m49Code;
-      this.name = name;
+
+    //No comment and No Video
+   public Speedrun(String runner, String category, String time, String level, String difficulties, String exit) {
+      this.Runner = runner;
+      this.Category = category;
+      this.Time = time;
+      this.Level = level;
+      this.Difficulty = difficulties;
+      this.Exit = exit;
    }
 
-   public String getM49Code() {
-      return m49Code;
+    //A Comment and No video
+    public Speedrun(String runner, String category, String time, String comment, String level, String difficulties, String exit) {
+      this.Runner = runner;
+      this.Category = category;
+      this.Time = time;
+      this.Comment = comment;
+      this.Level = level;
+      this.Difficulty = difficulties;
+      this.Exit = exit;
+    }
+
+     //No comment and A video
+   public Speedrun(String runner, String category, String time, String video, String level, String difficulties, String exit, boolean hasVideo) {
+      this.Runner = runner;
+      this.Category = category;
+      this.Time = time;
+      this.Video = video;
+      this.Level = level;
+      this.Difficulty = difficulties;
+      this.Exit = exit;
    }
 
-   public String getName() {
-      return name;
+    //A comment and A video
+    public Speedrun(String runner, String category, String time, String video, String comment, String level, String difficulties, String exit) {
+      this.Runner = runner;
+      this.Category = category;
+      this.Time = time;
+      this.Video = video;
+      this.Comment = comment;
+      this.Level = level;
+      this.Difficulty = difficulties;
+      this.Exit = exit;
+    }
+
+   public String getRunnerId() {
+      return Runner;
    }
 }

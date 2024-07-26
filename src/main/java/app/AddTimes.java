@@ -62,7 +62,7 @@ public class AddTimes implements Handler {
                 <h1 class='ultrakillTitleText'>-- ADD A RUN --</h1>
                 <div style="width:15vw;height:4vw;padding: 0vw 2vw;"></div>
                 </div>
-                <form>
+                <form method="post" action="/intermediate.html">
 
                     <div class='settingChunk'>
                         <h3>Runner Name*</h3>
