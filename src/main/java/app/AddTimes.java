@@ -29,6 +29,19 @@ public class AddTimes implements Handler {
 
     @Override
     public void handle(Context context) throws Exception {
+
+        //Java Variables
+        String Runner = context.formParam("Runner");
+        String Category = context.formParam("Category");
+        String Time = context.formParam("timeAchieved");
+        String Video = context.formParam("videoLink");
+        String Comment = context.formParam("runnerComment");
+        String Level = context.formParam("level");
+        String Difficulty = context.formParam("Difficulty");
+        String Exit = context.formParam("Exit");
+        
+
+
         // Create a simple HTML webpage in a String
         String html = "<html>";
 
