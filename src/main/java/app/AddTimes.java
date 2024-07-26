@@ -45,7 +45,7 @@ public class AddTimes implements Handler {
 
         html = html + """
                 <div class="flexBox" style="justify-content:space-between">
-                <button type="button" class="button">Back</button>
+                <a href="./"><button type="button" class="button">Back</button></a>
                 <h1 class='ultrakillTitleText'>-- ADD A RUN --</h1>
                 <div style="width:15vw;height:4vw;padding: 0vw 2vw;"></div>
                 </div>
