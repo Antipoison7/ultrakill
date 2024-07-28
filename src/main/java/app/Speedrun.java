@@ -76,4 +76,32 @@ public class Speedrun {
    public String getRunnerId() {
       return Runner;
    }
+
+   public String getCategory() {
+      return Category;
+   }
+
+   public String getTime() {
+      return Time;
+   }
+
+   public String getVideo() {
+      return Video;
+   }
+
+   public String getComment() {
+      return Comment;
+   }
+
+   public String getLevel() {
+      return Level;
+   }
+
+   public String getDifficulty() {
+      return Difficulty;
+   }
+
+   public String getExit() {
+      return Exit;
+   }
 }
