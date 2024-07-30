@@ -39,39 +39,44 @@ public class Intermediate implements Handler {
         String Level = context.formParam("level");
         String Difficulty = context.formParam("Difficulty");
         String Exit = context.formParam("Exit");
-        boolean hasVideo = false;
 
         Speedrun theRun;
 
-        if(Video != "")
-        {
-            hasVideo = true;
-        }
+        System.out.println("Video = '" + Video + "'");
+        System.out.println("Comment = '" + Comment + "'");
+
+        System.out.println("Does Video = " + !Video.equals(""));
+        System.out.println("Does Comment = "+ !Comment.equals(""));
+
         
-        if(hasVideo = true) // Has a video
+        if(!Video.equals("")) // Has a video
         {
-            if(Comment != "") // Has A comment and a video
+            if(!Comment.equals("")) // Has A comment and a video
             {
-                theRun = new Speedrun(Runner, Category, Time, Video, Level, Difficulty, Exit);
+                theRun = new Speedrun(Runner, Category, Time, Video, Comment,Level, Difficulty, Exit, 1);
             }
-            else // Has no comment and a video
+            else // Has No comment and a video
             {
-                theRun = new Speedrun(Runner, Category, Time, Video, Level, Difficulty, Exit, hasVideo);
+                theRun = new Speedrun(Runner, Category, Time, Video, Comment,Level, Difficulty, Exit, 2);
             }
             
         }
         else // Has no video
         {
-            if(Comment != "") // Has A comment and no video
+            if(!Comment.equals("")) // Has A comment and no video
             {
-                theRun = new Speedrun(Runner, Category, Time, Comment,Level, Difficulty, Exit);
+                theRun = new Speedrun(Runner, Category, Time, Video, Comment,Level, Difficulty, Exit, 3);
             }
 
             else // Has no comment and no video
             {
-                theRun = new Speedrun(Runner, Category, Time, Level, Difficulty, Exit);
+                theRun = new Speedrun(Runner, Category, Time, Video, Comment,Level, Difficulty, Exit, 4);
             }
         }
+
+        JDBCConnection jdbc = new JDBCConnection();
+    
+        jdbc.addARun(theRun);
         
         // Create a simple HTML webpage in a String
         String html = "<html>";
@@ -82,24 +87,38 @@ public class Intermediate implements Handler {
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
+        // html = html + "<meta http-equiv='refresh' content='5'; url ='./'/>";
         html = html + "</head>";
 
         // Add the body
-        html = html + "<body>";
+        html = html + "<body onload='redirectScript()'>";
 
         html = html + """
                 <p><a href="/">Damn, if you see this and it doesn't load click this. Do not refresh the page.</a></p>
                 """;
 
-        html = html + "<p>" + Runner + "</p>";
-        html = html + "<p>" + Category + "</p>";
-        html = html + "<p>" + Time + "</p>";
-        html = html + "<p>" + Video + "</p>"; //Optional
-        html = html + "<p>" + Comment + "</p>"; //Optional
-        html = html + "<p>" + Level + "</p>";
-        html = html + "<p>" + Difficulty + "</p>";
-        html = html + "<p>" + Exit + "</p>";
-        html = html + "<p>" + hasVideo + "</p>";
+        // html = html + "<p>" + Runner + "</p>";
+        // html = html + "<p>" + Category + "</p>";
+        // html = html + "<p>" + Time + "</p>";
+        // html = html + "<p>" + Video + "</p>"; //Optional
+        // html = html + "<p>" + Comment + "</p>"; //Optional
+        // html = html + "<p>" + Level + "</p>";
+        // html = html + "<p>" + Difficulty + "</p>";
+        // html = html + "<p>" + Exit + "</p>";
+
+        html = html + """
+                <script>
+                    function redirectScript()
+                    {
+                        sleep(1000);
+                        window.location.replace("/");
+                    }
+
+                    function sleep(ms) {
+                        return new Promise(resolve => setTimeout(resolve, ms));
+                    }
+                </script>
+                """;
 
         // Finish the HTML webpage
         html = html + "</body>" + "</html>";

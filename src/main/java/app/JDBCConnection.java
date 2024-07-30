@@ -89,12 +89,11 @@ public class JDBCConnection {
         return countries;
     }
 
-    public void addARun() {
-        // Create the ArrayList of Country objects to return
-        ArrayList<Country> countries = new ArrayList<Country>();
-
+    public void addARun(Speedrun submittedRun) {
         // Setup the variable for the JDBC connection
         Connection connection = null;
+
+        String query = "";
 
         try {
             // Connect to JDBC data base
@@ -104,25 +103,37 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
-            // The Query
-            String query = "SELECT * FROM Country";
+            System.out.println("Type = '"+ submittedRun.getType() + "'");
+
             
-            // Get Result
-            ResultSet results = statement.executeQuery(query);
-
-            // Process all of the results
-            while (results.next()) {
-                // Lookup the columns we need
-                String m49Code     = results.getString("m49code");
-                String name  = results.getString("countryName");
-
-                // Create a Country Object
-                Country country = new Country(m49Code, name);
-
-                // Add the Country object to the array
-                countries.add(country);
+            if(submittedRun.getType()==1)
+            {
+                //A Comment A Video
+                query = "INSERT INTO Runs (Runner, Category, Time, Comment, Video, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getComment() + "','" + submittedRun.getVideo()+ "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
             }
+            else if(submittedRun.getType()==2)
+            {
+                //No Comment A Video
+                query = "INSERT INTO Runs (Runner, Category, Time, Video, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getVideo()+ "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+            }
+            else if(submittedRun.getType()==3)
+            {
+                //A Comment No Video
+                query = "INSERT INTO Runs (Runner, Category, Time, Comment ,LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getComment() + "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+            }
+            else if(submittedRun.getType()==4)
+            {
+                //No Comment No Video
+                query = "INSERT INTO Runs (Runner, Category, Time, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+            }
+            
+            statement.executeQuery(query);
 
+
+
+
+            
+            
             // Close the statement because we are done with it
             statement.close();
         } catch (SQLException e) {

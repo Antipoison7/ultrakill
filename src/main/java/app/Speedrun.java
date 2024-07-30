@@ -25,53 +25,22 @@ public class Speedrun {
    //Exit (Normal, Secret)
    private String Exit;
 
-   /**
-    * Create a Country and set the fields
-    */
+   private int SpeedrunType;
 
-    //No comment and No Video
-   public Speedrun(String runner, String category, String time, String level, String difficulties, String exit) {
-      this.Runner = runner;
-      this.Category = category;
-      this.Time = time;
-      this.Level = level;
-      this.Difficulty = difficulties;
-      this.Exit = exit;
-   }
 
-    //A Comment and No video
-    public Speedrun(String runner, String category, String time, String comment, String level, String difficulties, String exit) {
-      this.Runner = runner;
-      this.Category = category;
-      this.Time = time;
-      this.Comment = comment;
-      this.Level = level;
-      this.Difficulty = difficulties;
-      this.Exit = exit;
-    }
 
-     //No comment and A video
-   public Speedrun(String runner, String category, String time, String video, String level, String difficulties, String exit, boolean hasVideo) {
-      this.Runner = runner;
-      this.Category = category;
-      this.Time = time;
-      this.Video = video;
-      this.Level = level;
-      this.Difficulty = difficulties;
-      this.Exit = exit;
-   }
-
-    //A comment and A video
-    public Speedrun(String runner, String category, String time, String video, String comment, String level, String difficulties, String exit) {
-      this.Runner = runner;
-      this.Category = category;
-      this.Time = time;
-      this.Video = video;
-      this.Comment = comment;
-      this.Level = level;
-      this.Difficulty = difficulties;
-      this.Exit = exit;
-    }
+//A comment and A video
+public Speedrun(String runner, String category, String time, String video, String comment, String level, String difficulties, String exit, int Type) {
+   this.Runner = runner;
+   this.Category = category;
+   this.Time = time;
+   this.Video = video;
+   this.Comment = comment;
+   this.Level = level;
+   this.Difficulty = difficulties;
+   this.Exit = exit;
+   this.SpeedrunType = Type;
+ }
 
    public String getRunnerId() {
       return Runner;
@@ -103,5 +72,9 @@ public class Speedrun {
 
    public String getExit() {
       return Exit;
+   }
+
+   public int getType() {
+      return SpeedrunType;
    }
 }
