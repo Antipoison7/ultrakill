@@ -103,36 +103,51 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
-            System.out.println("Type = '"+ submittedRun.getType() + "'");
+            // System.out.println("Type = '"+ submittedRun.getType() + "'");
 
             
-            if(submittedRun.getType()==1)
+            switch(submittedRun.getType())
             {
-                //A Comment A Video
+                case 1:
                 query = "INSERT INTO Runs (Runner, Category, Time, Comment, Video, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getComment() + "','" + submittedRun.getVideo()+ "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
-            }
-            else if(submittedRun.getType()==2)
-            {
-                //No Comment A Video
+                break;
+
+                case 2:
                 query = "INSERT INTO Runs (Runner, Category, Time, Video, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getVideo()+ "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
-            }
-            else if(submittedRun.getType()==3)
-            {
-                //A Comment No Video
+                break;
+
+                case 3:
                 query = "INSERT INTO Runs (Runner, Category, Time, Comment ,LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getComment() + "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
-            }
-            else if(submittedRun.getType()==4)
-            {
-                //No Comment No Video
+                break;
+
+                case 4:
                 query = "INSERT INTO Runs (Runner, Category, Time, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+                break;
             }
+
+
+            // if(submittedRun.getType()==1)
+            // {
+            //     //A Comment A Video
+            //     query = "INSERT INTO Runs (Runner, Category, Time, Comment, Video, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getComment() + "','" + submittedRun.getVideo()+ "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+            // }
+            // else if(submittedRun.getType()==2)
+            // {
+            //     //No Comment A Video
+            //     query = "INSERT INTO Runs (Runner, Category, Time, Video, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getVideo()+ "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+            // }
+            // else if(submittedRun.getType()==3)
+            // {
+            //     //A Comment No Video
+            //     query = "INSERT INTO Runs (Runner, Category, Time, Comment ,LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getComment() + "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+            // }
+            // else if(submittedRun.getType()==4)
+            // {
+            //     //No Comment No Video
+            //     query = "INSERT INTO Runs (Runner, Category, Time, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+            // }
             
-            statement.executeQuery(query);
-
-
-
-
-            
+            statement.execute(query);            
             
             // Close the statement because we are done with it
             statement.close();

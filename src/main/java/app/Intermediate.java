@@ -42,11 +42,11 @@ public class Intermediate implements Handler {
 
         Speedrun theRun;
 
-        System.out.println("Video = '" + Video + "'");
-        System.out.println("Comment = '" + Comment + "'");
+        // System.out.println("Video = '" + Video + "'");
+        // System.out.println("Comment = '" + Comment + "'");
 
-        System.out.println("Does Video = " + !Video.equals(""));
-        System.out.println("Does Comment = "+ !Comment.equals(""));
+        // System.out.println("Does Video = " + !Video.equals(""));
+        // System.out.println("Does Comment = "+ !Comment.equals(""));
 
         
         if(!Video.equals("")) // Has a video

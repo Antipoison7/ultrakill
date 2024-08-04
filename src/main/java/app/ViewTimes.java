@@ -34,7 +34,7 @@ public class ViewTimes implements Handler {
 
         // Add some Head information
         html = html + "<head>" + 
-               "<title>Subtask 2.1</title>";
+               "<title>Runs</title>";
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
@@ -42,6 +42,28 @@ public class ViewTimes implements Handler {
 
         // Add the body
         html = html + "<body>";
+        html = html + """
+                <div class="flexBox" style="justify-content:space-between; margin-bottom:5px;">
+                <a href="./"><button type="button" class="button">Back</button></a>
+                <h1 class='ultrakillTitleText'>-- Level Select --</h1>
+                <div style="width:15vw;height:4vw;padding: 0vw 2vw;"></div>
+                </div>
+                """;
+
+        html = html + """
+                <div class="levelSelect">
+                    <div class="levelSelectThumbnail">
+                        <h2>1-1: INTO THE FIRE</h2>
+                        <img src="./Thumbnails/1-1.webp">
+                    </div>
+                    <div>
+                    <div class="flexBox">
+                        <button class="levelButton">ANY%</button>
+                        <button class="levelButton">P%</button>
+                    </div>
+                    </div>
+                </div>
+                """;
 
         // Finish the HTML webpage
         html = html + "</body>" + "</html>";
