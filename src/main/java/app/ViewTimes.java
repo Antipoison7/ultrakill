@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
+import helper.LevelMaker;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,6 +27,7 @@ public class ViewTimes implements Handler {
 
     // URL of this page relative to http://localhost:7001/
     public static final String URL = "/times.html";
+    LevelMaker elements = new LevelMaker();
 
     @Override
     public void handle(Context context) throws Exception {
@@ -43,27 +45,17 @@ public class ViewTimes implements Handler {
         // Add the body
         html = html + "<body>";
         html = html + """
-                <div class="flexBox" style="justify-content:space-between; margin-bottom:5px;">
+                <div class="flexBox" style="justify-content:space-between; margin-bottom:10px;">
                 <a href="./"><button type="button" class="button">Back</button></a>
                 <h1 class='ultrakillTitleText'>-- Level Select --</h1>
                 <div style="width:15vw;height:4vw;padding: 0vw 2vw;"></div>
                 </div>
                 """;
 
-        html = html + """
-                <div class="levelSelect">
-                    <div class="levelSelectThumbnail">
-                        <h2>1-1: INTO THE FIRE</h2>
-                        <img src="./Thumbnails/1-1.webp">
-                    </div>
-                    <div>
-                    <div class="flexBox">
-                        <button class="levelButton">ANY%</button>
-                        <button class="levelButton">P%</button>
-                    </div>
-                    </div>
-                </div>
-                """;
+        html = html + "<div class='levelRows'>";
+        html = html + elements.GetLevel("1-1");
+        html = html + elements.GetLevel("1-2");
+        html = html + "</div>";
 
         // Finish the HTML webpage
         html = html + "</body>" + "</html>";
