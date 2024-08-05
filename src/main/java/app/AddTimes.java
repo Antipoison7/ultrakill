@@ -93,7 +93,7 @@ public class AddTimes implements Handler {
                     <div class='settingChunk'>
                         <h3>Time*</h3>
 
-                        <input type="text" id="timesAchieved" name="timeAchieved" placeholder="mm:ss.mmm" required>
+                        <input type="text" id="timesAchieved" name="timeAchieved" placeholder="mm:ss.mmm" pattern="[0-9]{2}[:][0-9]{2}[.][0-9]{3}" required>
                     </div>
 
                     <div class='settingChunk'>
@@ -166,6 +166,7 @@ public class AddTimes implements Handler {
                         <select name="Exit" id="Exits" required>
                             <option value="Normal">Normal</option>
                             <option value="Secret">Secret</option>
+                            <option value="Prime Door">P-Door</option>
                         </select>
                     </div>
 
