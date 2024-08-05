@@ -94,7 +94,7 @@ public class Intermediate implements Handler {
         html = html + "<body onload='redirectScript()'>";
 
         html = html + """
-                <p><a href="/">Damn, if you see this and it doesn't load click this. Do not refresh the page.</a></p>
+                <p><a href="/">Damn, if you see this and it doesn't load, click this. Do not refresh the page.</a></p>
                 """;
 
         // html = html + "<p>" + Runner + "</p>";
