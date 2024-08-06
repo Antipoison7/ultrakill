@@ -2,6 +2,9 @@ package app;
 
 import java.util.ArrayList;
 
+import helper.BasicRun;
+import helper.NumberConversion;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -92,6 +95,7 @@ public class JDBCConnection {
     public void addARun(Speedrun submittedRun) {
         // Setup the variable for the JDBC connection
         Connection connection = null;
+        NumberConversion numbs = new NumberConversion();
 
         String query = "";
 
@@ -105,23 +109,24 @@ public class JDBCConnection {
 
             // System.out.println("Type = '"+ submittedRun.getType() + "'");
 
+            Double runTime = numbs.ToSeconds(submittedRun.getTime());
             
             switch(submittedRun.getType())
             {
                 case 1:
-                query = "INSERT INTO Runs (Runner, Category, Time, Comment, Video, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getComment() + "','" + submittedRun.getVideo()+ "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+                query = "INSERT INTO Runs (Runner, Category, Time, Comment, Video, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + runTime + "','" + submittedRun.getComment() + "','" + submittedRun.getVideo()+ "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
                 break;
 
                 case 2:
-                query = "INSERT INTO Runs (Runner, Category, Time, Video, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getVideo()+ "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+                query = "INSERT INTO Runs (Runner, Category, Time, Video, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + runTime + "','" + submittedRun.getVideo()+ "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
                 break;
 
                 case 3:
-                query = "INSERT INTO Runs (Runner, Category, Time, Comment ,LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getComment() + "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+                query = "INSERT INTO Runs (Runner, Category, Time, Comment ,LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + runTime + "','" + submittedRun.getComment() + "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
                 break;
 
                 case 4:
-                query = "INSERT INTO Runs (Runner, Category, Time, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + submittedRun.getTime() + "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
+                query = "INSERT INTO Runs (Runner, Category, Time, LevelCode, Difficulty, Exit) VALUES ('"+ submittedRun.getRunnerId() +"','"+ submittedRun.getCategory() +"','" + runTime + "','" + submittedRun.getLevel() + "','" + submittedRun.getDifficulty() + "','" + submittedRun.getExit() + "');";
                 break;
             }
             
@@ -198,4 +203,71 @@ public class JDBCConnection {
         return levelDetails;
     }
 
+    public ArrayList<BasicRun> getBasicRuns(String LevelCode, String Category) {
+        // Create the ArrayList of Country objects to return
+        ArrayList<BasicRun> basicRuns = new ArrayList<BasicRun>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "";
+
+            if(Category.equals("A"))
+            {
+                query = "SELECT runs.Category, Runners.name, Runners.profilepicture, runs.time, Difficulty.DifficultyName, Difficulty.DifficultyDescription FROM runs LEFT JOIN Runners ON Runners.userid = runs.runner LEFT JOIN difficulty ON difficulty.DifficultyId = runs.Difficulty WHERE (Category = 'Any% OOB' OR Category = 'Any%') AND levelCode = '" + LevelCode + "' ORDER BY time;";
+            }
+            else
+            {
+                query = "SELECT runs.Category, Runners.name, Runners.profilepicture, runs.time, Difficulty.DifficultyName, Difficulty.DifficultyDescription FROM runs LEFT JOIN Runners ON Runners.userid = runs.runner LEFT JOIN difficulty ON difficulty.DifficultyId = runs.Difficulty WHERE (Category = 'P% OOB' OR Category = 'P%') AND levelCode = '" + LevelCode + "' ORDER BY time;";
+            }
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                String runCategory  = results.getString("Category");
+                String runName  = results.getString("name");
+                String runUserProfile  = results.getString("profilepicture");
+                String runTime  = results.getString("time");
+                String runDifficulty  = results.getString("DifficultyName");
+                String runDifficultyDescription  = results.getString("DifficultyDescription");
+
+                // Create a Country Object
+                BasicRun usersRun = new BasicRun(runCategory,runName,runTime,runDifficulty,runDifficultyDescription,runUserProfile);
+
+                // Add the Country object to the array
+                basicRuns.add(usersRun);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the countries
+        return basicRuns;
+    }
 }
