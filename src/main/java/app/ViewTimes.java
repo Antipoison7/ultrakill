@@ -32,7 +32,10 @@ public class ViewTimes implements Handler {
     @Override
     public void handle(Context context) throws Exception {
         // Create a simple HTML webpage in a String
-        String html = "<html>";
+        String html = """
+        <!DOCTYPE html>
+        <html>
+        """;
 
         // Add some Head information
         html = html + "<head>" + 
@@ -58,7 +61,23 @@ public class ViewTimes implements Handler {
         html = html + "</div>";
 
         // Finish the HTML webpage
-        html = html + "</body>" + "</html>";
+        html = html + "</body>";
+
+        html = html + """
+                <script>
+                    function toAny(idCode){
+                        document.getElementById(idCode + "Any").style.display = "block";
+                        document.getElementById(idCode + "P").style.display = "none";
+                    }
+
+                    function toP(idCode){
+                        document.getElementById(idCode + "Any").style.display = "none";
+                        document.getElementById(idCode + "P").style.display = "block";
+                    }
+                </script>
+                """;
+
+        html = html + "</html>";
         
 
         // DO NOT MODIFY THIS
