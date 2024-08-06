@@ -3,6 +3,9 @@ package helper;
 import app.JDBCConnection;
 import app.LevelTemplate;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class LevelMaker
 {
     public String GetLevel(String levelCode)
@@ -24,27 +27,44 @@ public class LevelMaker
 
                     <div>
                         <div class="flexBox" style="margin-bottom:5px; justify-content: space-around;">
-                            <button class="levelButton" onclick="">ANY%</button>
-                            <button class="levelButton" onclick="">P%</button>
+                            <button class="levelButton" onclick="toAny('""";
+        generatedCode = generatedCode + thisLevel.getLevelCode();
+        generatedCode = generatedCode + """
+        ')">ANY%</button>
+                            <button class="levelButton" onclick="toP('""";
+        generatedCode = generatedCode + thisLevel.getLevelCode();
+        generatedCode = generatedCode + """
+        ')">P%</button>
                         </div>
                         <div class="levelContainer" id='""";
                         generatedCode = generatedCode + thisLevel.getLevelCode() + "Any";
                         generatedCode = generatedCode + """
-                        '>
-                        
-                            <div class="levelScoreInstance">
-                                <div class="levelUserPfp"><img src="Pfp/Connor.jpg"></div>
-                                <div class="levelUserName"><p>Connor</p></div>
-                                <div class="levelUserDiff"><p>Brutal</p></div>
-                                <div class="levelUserTime"><p>00:12.304</p></div>
-                            </div>
+                        ' style="display:block;">""";
+                                
+                                
+                        ArrayList<BasicRun> aRun = jdbc.getBasicRuns(levelCode, "A");
 
+                        for (BasicRun userRun : aRun)
+                        {
+                            generatedCode = generatedCode + "<div class='levelScoreInstance'>";
+                                generatedCode = generatedCode + "<div class='levelUserPfp'><img src='" + userRun.getPfp() + "'></div>";
+                                generatedCode = generatedCode + "<div class='levelUserName'><p>" + userRun.getName() + "</p></div>";
+                                generatedCode = generatedCode + "<div class='levelUserDiff'><p>" + userRun.getDifficulty() + "</p></div>";
+                                generatedCode = generatedCode + "<div class='levelUserTime'><p>00:69.304</p></div>";
+                            generatedCode = generatedCode + "</div>";
+                        }
+
+
+
+                            
+
+        generatedCode = generatedCode + """
                         </div>
 
                         <div class="levelContainer" id='""";
                         generatedCode = generatedCode + thisLevel.getLevelCode() + "P";
                         generatedCode = generatedCode + """
-                        '>
+' style="display:none;">
                         
                             <div class="levelScoreInstance">
                                 <div class="levelUserPfp"><img src="Pfp/Connor.jpg"></div>
