@@ -43,6 +43,7 @@ public class LevelMaker
                                 
                                 
                         ArrayList<BasicRun> aRun = jdbc.getBasicRuns(levelCode, "A");
+                        NumberConversion numbs = new NumberConversion();
 
                         for (BasicRun userRun : aRun)
                         {
@@ -50,7 +51,7 @@ public class LevelMaker
                                 generatedCode = generatedCode + "<div class='levelUserPfp'><img src='" + userRun.getPfp() + "'></div>";
                                 generatedCode = generatedCode + "<div class='levelUserName'><p>" + userRun.getName() + "</p></div>";
                                 generatedCode = generatedCode + "<div class='levelUserDiff'><p>" + userRun.getDifficulty() + "</p></div>";
-                                generatedCode = generatedCode + "<div class='levelUserTime'><p>00:69.304</p></div>";
+                                generatedCode = generatedCode + "<div class='levelUserTime'><p>" + numbs.ToDuration(userRun.getTime()) + "</p></div>";
                             generatedCode = generatedCode + "</div>";
                         }
 
@@ -63,21 +64,26 @@ public class LevelMaker
 
                         <div class="levelContainer" id='""";
                         generatedCode = generatedCode + thisLevel.getLevelCode() + "P";
-                        generatedCode = generatedCode + """
-' style="display:none;">
+                        generatedCode = generatedCode + "' style='display:none;'>";
                         
-                            <div class="levelScoreInstance">
-                                <div class="levelUserPfp"><img src="Pfp/Connor.jpg"></div>
-                                <div class="levelUserName"><p>Connor</p></div>
-                                <div class="levelUserDiff"><p>Brutal</p></div>
-                                <div class="levelUserTime"><p>00:12.304</p></div>
-                            </div>
+                        ArrayList<BasicRun> pRun = jdbc.getBasicRuns(levelCode, "P");
 
+                        for (BasicRun userRun : pRun)
+                        {
+                        generatedCode = generatedCode + "<div class='levelScoreInstance'>";
+                            generatedCode = generatedCode + "<div class='levelUserPfp'><img src='" + userRun.getPfp() + "'></div>";
+                            generatedCode = generatedCode + "<div class='levelUserName'><p>" + userRun.getName() + "</p></div>";
+                            generatedCode = generatedCode + "<div class='levelUserDiff'><p>" + userRun.getDifficulty() + "</p></div>";
+                            generatedCode = generatedCode + "<div class='levelUserTime'><p>" + numbs.ToDuration(userRun.getTime()) + "</p></div>";
+                        generatedCode = generatedCode + "</div>";
+                        }
+                                                        
+                        generatedCode = generatedCode + """
                         </div>
                     </div>
                 </div>
                 """;
-
+        
         return generatedCode;
     }
 }
