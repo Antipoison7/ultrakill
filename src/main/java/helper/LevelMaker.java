@@ -27,14 +27,25 @@ public class LevelMaker
 
                     <div>
                         <div class="flexBox" style="margin-bottom:5px; justify-content: space-around;">
-                            <button class="levelButton" onclick="toAny('""";
+                            <button class="levelButtonSelected" onclick="toAny('""";
         generatedCode = generatedCode + thisLevel.getLevelCode();
         generatedCode = generatedCode + """
-        ')">ANY%</button>
-                            <button class="levelButton" onclick="toP('""";
-        generatedCode = generatedCode + thisLevel.getLevelCode();
+        ')"
+                """;
+        generatedCode = generatedCode + "id='aSelect" + thisLevel.getLevelCode() + "'";
+        generatedCode = generatedCode + ">ANY%</button>";
         generatedCode = generatedCode + """
-        ')">P%</button>
+                <button class="levelButton" onclick="toP('""";
+        generatedCode = generatedCode + thisLevel.getLevelCode();
+                                    
+        generatedCode = generatedCode + """
+        ')"
+                """;
+        generatedCode = generatedCode + "id='pSelect" + thisLevel.getLevelCode() + "'";
+        
+        generatedCode = generatedCode + """
+                
+                >P%</button>
                         </div>
                         <div class="levelContainer" id='""";
                         generatedCode = generatedCode + thisLevel.getLevelCode() + "Any";

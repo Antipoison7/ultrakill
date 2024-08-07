@@ -131,11 +131,15 @@ public class ViewTimes implements Handler {
                     function toAny(idCode){
                         document.getElementById(idCode + "Any").style.display = "block";
                         document.getElementById(idCode + "P").style.display = "none";
+                        document.getElementById("aSelect" + idCode).className = "levelButtonSelected";
+                        document.getElementById("pSelect" + idCode).className = "levelButton";
                     }
 
                     function toP(idCode){
                         document.getElementById(idCode + "Any").style.display = "none";
                         document.getElementById(idCode + "P").style.display = "block";
+                        document.getElementById("aSelect" + idCode).className = "levelButton";
+                        document.getElementById("pSelect" + idCode).className = "levelButtonSelected";
                     }
                 </script>
                 """;
