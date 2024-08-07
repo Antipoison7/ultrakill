@@ -34,7 +34,7 @@ public class Settings implements Handler {
 
         // Add some Head information
         html = html + "<head>" + 
-               "<title>Subtask 3.2</title>";
+               "<title>Change Settings</title>";
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
