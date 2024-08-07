@@ -12,8 +12,10 @@
 body {
    font-family: Arial;
    padding: 10px;
-   background: #434343;
+   background: black;
    background-image: url("Background.gif");
+   background-repeat: repeat-y;
+   background-size: 100%;
 }
 
 a
