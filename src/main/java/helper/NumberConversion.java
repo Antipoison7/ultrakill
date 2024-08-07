@@ -23,7 +23,7 @@ public class NumberConversion
         String durationString = "";
 
         String Minutes = Integer.toString((int)(seconds / 60));
-        String Seconds = Double.toString((double)(seconds % 60));
+        String Seconds = String.format("%06.3f",((double)(seconds % 60)));
 
         if(Minutes.length() == 1)
         {
