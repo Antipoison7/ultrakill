@@ -55,9 +55,72 @@ public class ViewTimes implements Handler {
                 </div>
                 """;
 
-        html = html + "<div class='levelRows'>";
+        html = html + "<h2 class='layerHeading'>OVERTURE: THE MOUTH OF HELL</h2>";
+        html = html + "<div class='levelRows' style='grid-template-columns: auto auto auto auto auto'>";
+        html = html + elements.GetLevel("0-1");
+        html = html + elements.GetLevel("0-2");
+        html = html + elements.GetLevel("0-3");
+        html = html + elements.GetLevel("0-4");
+        html = html + elements.GetLevel("0-5");
+        html = html + "</div>";
+
+        html = html + "<h2 class='layerHeading'>LAYER 1: LIMBO</h2>";
+        html = html + "<div class='levelRows' style='grid-template-columns: auto auto auto auto'>";
         html = html + elements.GetLevel("1-1");
         html = html + elements.GetLevel("1-2");
+        html = html + elements.GetLevel("1-3");
+        html = html + elements.GetLevel("1-4");
+        html = html + "</div>";
+
+        html = html + "<h2 class='layerHeading'>LAYER 2: LIMBO</h2>";
+        html = html + "<div class='levelRows' style='grid-template-columns: auto auto auto auto'>";
+        html = html + elements.GetLevel("2-1");
+        html = html + elements.GetLevel("2-2");
+        html = html + elements.GetLevel("2-3");
+        html = html + elements.GetLevel("2-4");
+        html = html + "</div>";
+
+        html = html + "<h2 class='layerHeading'>LAYER 3: LIMBO</h2>";
+        html = html + "<div class='levelRows' style='grid-template-columns: auto auto'>";
+        html = html + elements.GetLevel("3-1");
+        html = html + elements.GetLevel("3-2");
+
+        html = html + "</div>";
+
+        html = html + "<h2 class='layerHeading'>LAYER 4: LIMBO</h2>";
+        html = html + "<div class='levelRows' style='grid-template-columns: auto auto auto auto'>";
+        html = html + elements.GetLevel("4-1");
+        html = html + elements.GetLevel("4-2");
+        html = html + elements.GetLevel("4-3");
+        html = html + elements.GetLevel("4-4");
+        html = html + "</div>";
+
+        html = html + "<h2 class='layerHeading'>LAYER 5: LIMBO</h2>";
+        html = html + "<div class='levelRows' style='grid-template-columns: auto auto auto auto'>";
+        html = html + elements.GetLevel("5-1");
+        html = html + elements.GetLevel("5-2");
+        html = html + elements.GetLevel("5-3");
+        html = html + elements.GetLevel("5-4");
+        html = html + "</div>";
+
+        html = html + "<h2 class='layerHeading'>LAYER 6: LIMBO</h2>";
+        html = html + "<div class='levelRows' style='grid-template-columns: auto auto'>";
+        html = html + elements.GetLevel("6-1");
+        html = html + elements.GetLevel("6-2");
+        html = html + "</div>";
+
+        html = html + "<h2 class='layerHeading'>LAYER 7: LIMBO</h2>";
+        html = html + "<div class='levelRows' style='grid-template-columns: auto auto auto auto'>";
+        html = html + elements.GetLevel("7-1");
+        html = html + elements.GetLevel("7-2");
+        html = html + elements.GetLevel("7-3");
+        html = html + elements.GetLevel("7-4");
+        html = html + "</div>";
+
+        html = html + "<h2 class='layerHeading'>Prime Sanctums</h2>";
+        html = html + "<div class='levelRows' style='grid-template-columns: auto auto'>";
+        html = html + elements.GetLevel("p-1");
+        html = html + elements.GetLevel("p-2");
         html = html + "</div>";
 
         // Finish the HTML webpage
