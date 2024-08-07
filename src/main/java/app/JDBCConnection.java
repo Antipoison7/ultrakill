@@ -223,11 +223,11 @@ public class JDBCConnection {
 
             if(Category.equals("A"))
             {
-                query = "SELECT runs.Category, Runners.name, Runners.profilepicture, runs.time, Difficulty.DifficultyName, Difficulty.DifficultyDescription FROM runs LEFT JOIN Runners ON Runners.userid = runs.runner LEFT JOIN difficulty ON difficulty.DifficultyId = runs.Difficulty WHERE (Category = 'Any% OOB' OR Category = 'Any%') AND levelCode = '" + LevelCode + "' ORDER BY time;";
+                query = "SELECT runs.Category, Runners.name, Runners.profilepicture, min(runs.time) as time, Difficulty.DifficultyName, Difficulty.DifficultyDescription FROM runs LEFT JOIN Runners ON Runners.userid = runs.runner LEFT JOIN difficulty ON difficulty.DifficultyId = runs.Difficulty WHERE (Category = 'Any% OOB' OR Category = 'Any%') AND levelCode = '" + LevelCode + "' GROUP BY name ORDER BY time ASC;";
             }
             else
             {
-                query = "SELECT runs.Category, Runners.name, Runners.profilepicture, runs.time, Difficulty.DifficultyName, Difficulty.DifficultyDescription FROM runs LEFT JOIN Runners ON Runners.userid = runs.runner LEFT JOIN difficulty ON difficulty.DifficultyId = runs.Difficulty WHERE (Category = 'P% OOB' OR Category = 'P%') AND levelCode = '" + LevelCode + "' ORDER BY time;";
+                query = "SELECT runs.Category, Runners.name, Runners.profilepicture, min(runs.time) as time, Difficulty.DifficultyName, Difficulty.DifficultyDescription FROM runs LEFT JOIN Runners ON Runners.userid = runs.runner LEFT JOIN difficulty ON difficulty.DifficultyId = runs.Difficulty WHERE (Category = 'P% OOB' OR Category = 'P%') AND levelCode = '" + LevelCode + "' GROUP BY name ORDER BY time ASC;";
             }
             
             // Get Result
