@@ -47,7 +47,7 @@ public class AddTimes implements Handler {
 
         // Add some Head information
         html = html + "<head>" + 
-               "<title>Subtask 3.1</title>";
+               "<title>Submit A Run</title>";
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
@@ -117,33 +117,33 @@ public class AddTimes implements Handler {
                             <option value="0-2">0-2</option>
                             <option value="0-3">0-3</option>
                             <option value="0-4">0-4</option>
-                            <option value="0-5">0-5</option>
+                            <option value="0-5">0-5 Cerberus</option>
                             <option value="1-1">1-1</option>
                             <option value="1-2">1-2</option>
                             <option value="1-3">1-3</option>
-                            <option value="1-4">1-4</option>
+                            <option value="1-4">1-4 V2</option>
                             <option value="2-1">2-1</option>
                             <option value="2-2">2-2</option>
                             <option value="2-3">2-3</option>
-                            <option value="2-4">2-4</option>
+                            <option value="2-4">2-4 Minos</option>
                             <option value="3-1">3-1</option>
-                            <option value="3-2">3-2</option>
-                            <option value="p-1">p-1</option>
+                            <option value="3-2">3-2 Gaberiel</option>
+                            <option value="p-1">p-1 ???</option>
                             <option value="4-1">4-1</option>
                             <option value="4-2">4-2</option>
                             <option value="4-3">4-3</option>
-                            <option value="4-4">4-4</option>
+                            <option value="4-4">4-4 V2 Rematch</option>
                             <option value="5-1">5-1</option>
                             <option value="5-2">5-2</option>
                             <option value="5-3">5-3</option>
-                            <option value="5-4">5-4</option>
+                            <option value="5-4">5-4 Leviathan</option>
                             <option value="6-1">6-1</option>
-                            <option value="6-2">6-2</option>
-                            <option value="p-2">p-2</option>
+                            <option value="6-2">6-2 Gabriel Rematch</option>
+                            <option value="p-2">p-2 !!!</option>
                             <option value="7-1">7-1</option>
                             <option value="7-2">7-2</option>
                             <option value="7-3">7-3</option>
-                            <option value="7-4">7-4</option>
+                            <option value="7-4">7-4 Earthmover</option>
                         </select>
                     </div>
 
