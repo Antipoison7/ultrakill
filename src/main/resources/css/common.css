@@ -13,6 +13,7 @@ body {
    font-family: Arial;
    padding: 10px;
    background: #434343;
+   background-image: url("Background.gif");
 }
 
 a
@@ -115,6 +116,19 @@ img.top-image {
 }
 
 .settingChunk select
+{
+   box-sizing: border-box;
+   width: 15vw;
+   padding: 10px;
+   border: solid 1px white;
+   border-radius: 5px;
+   color: white;
+   font-family: UltrakillFont;
+   font-size: 1vw;
+   background-color: black;
+}
+
+.settingChunk input[type="text"], input[type="url"]
 {
    box-sizing: border-box;
    width: 15vw;
