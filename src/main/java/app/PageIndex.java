@@ -51,7 +51,7 @@ public class PageIndex implements Handler {
                         <h1 class='ultrakillTitleText'>-- EARLY ACCESS --</h1>
                         <div class='flexBox' style='align-items:center;flex-direction:column;'>
                             <a href='./times.html' class='titleAnchor'><div class='ultrakillTitleButtonMain' id='times'><h2 id='timesText'>View Times</h2></div></a>
-                            <a href='./advTimes.html' class='titleAnchor'><div class='ultrakillTitleButtonMain' id='advtimes'><h2 id='advtimesText'>Advanced Times</h2></div></a>
+                            <a href='./advTimes.html?level=all' class='titleAnchor'><div class='ultrakillTitleButtonMain' id='advtimes'><h2 id='advtimesText'>Advanced Times</h2></div></a>
                             <a href='./addTimes.html' class='titleAnchor'><div class='ultrakillTitleButtonMain' id='addTimes'><h2 id='addTimesText'>Add Times</h2></div></a>
                             <a href='./userSettings.html' class='titleAnchor'><div class='ultrakillTitleButtonMain' id='settings'><h2 id='settingsText'>Settings</h2></div></a>
                             <a href='https://www.speedrun.com/ultrakill' class='titleAnchor' target='_blank'><div class='ultrakillTitleButtonMain' id='speedrun'><h2 id='speedText'>Speedrun.com</h2></div></a>
