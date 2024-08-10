@@ -270,4 +270,210 @@ public class JDBCConnection {
         // Finally we return all of the countries
         return basicRuns;
     }
+
+    public ArrayList<LevelTemplate> getAllLevels() {
+        // Create the ArrayList of Country objects to return
+        ArrayList<LevelTemplate> levels = new ArrayList<LevelTemplate>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT levelcode, levelname FROM Level;";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                String levelCode     = results.getString("levelcode");
+                String levelName     = results.getString("levelname");
+
+                // Create a Country Object
+                LevelTemplate level = new LevelTemplate(levelCode, levelName);
+
+                // Add the Country object to the array
+                levels.add(level);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the countries
+        return levels;
+    }
+
+public ArrayList<AdvancedRun> getComplexRuns(String identification, String Levelid) {
+    // Create the ArrayList of Country objects to return
+    ArrayList<AdvancedRun> runs = new ArrayList<AdvancedRun>();
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        // The Query
+        String query = "";
+
+        if(Levelid.equals("all"))
+        {
+            if(identification.equals("Any"))
+            {
+                query = "SELECT runs.rowid, runners.Name, runners.ProfilePicture, min(runs.Time) as Time, difficulty.DifficultyName, difficulty.DifficultyDescription, runs.category, runs.comment, runs.video, runs.LevelCode\r\n" + //
+                                        "FROM runs\r\n" + //
+                                        "LEFT JOIN runners\r\n" + //
+                                        "ON runs.Runner = runners.UserID\r\n" + //
+                                        "LEFT JOIN difficulty\r\n" + //
+                                        "ON runs.difficulty = difficulty.DifficultyId\r\n" + //
+                                        "WHERE category = 'Any%' \r\n" + //
+                                        "OR category = 'Any% OOB'\r\n" + //
+                                        "GROUP BY runners.Name,runs.LevelCode\r\n" + //
+                                        "ORDER BY Time;";
+            }
+            else if(identification.equals("P"))
+            {
+                query = "SELECT runs.rowid, runners.Name, runners.ProfilePicture, min(runs.Time) as Time, difficulty.DifficultyName, difficulty.DifficultyDescription, runs.category, runs.comment, runs.video, runs.LevelCode\r\n" + //
+                                        "FROM runs\r\n" + //
+                                        "LEFT JOIN runners\r\n" + //
+                                        "ON runs.Runner = runners.UserID\r\n" + //
+                                        "LEFT JOIN difficulty\r\n" + //
+                                        "ON runs.difficulty = difficulty.DifficultyId\r\n" + //
+                                        "WHERE category = 'P%' \r\n" + //
+                                        "OR category = 'P% OOB'\r\n" + //
+                                        "GROUP BY runners.Name,runs.LevelCode\r\n" + //
+                                        "ORDER BY Time;";
+            }
+            else if(identification.equals("NoMo"))
+            {
+                query = "SELECT runs.rowid, runners.Name, runners.ProfilePicture, min(runs.Time) as Time, difficulty.DifficultyName, difficulty.DifficultyDescription, runs.category, runs.comment, runs.video, runs.LevelCode\r\n" + //
+                                        "FROM runs\r\n" + //
+                                        "LEFT JOIN runners\r\n" + //
+                                        "ON runs.Runner = runners.UserID\r\n" + //
+                                        "LEFT JOIN difficulty\r\n" + //
+                                        "ON runs.difficulty = difficulty.DifficultyId\r\n" + //
+                                        "WHERE category = 'NoMo' \r\n" + //
+                                        "OR category = 'NoMo OOB'\r\n" + //
+                                        "GROUP BY runners.Name,runs.LevelCode\r\n" + //
+                                        "ORDER BY Time;";
+            }
+        }
+        else
+        {
+            if(identification.equals("Any"))
+            {
+                query = "SELECT runs.rowid, runners.Name, runners.ProfilePicture, min(runs.Time) as Time, difficulty.DifficultyName, difficulty.DifficultyDescription, runs.category, runs.comment, runs.video, runs.LevelCode\r\n" + //
+                                        "FROM runs\r\n" + //
+                                        "LEFT JOIN runners\r\n" + //
+                                        "ON runs.Runner = runners.UserID\r\n" + //
+                                        "LEFT JOIN difficulty\r\n" + //
+                                        "ON runs.difficulty = difficulty.DifficultyId\r\n" + //
+                                        "WHERE (category = 'Any%' \r\n" + //
+                                        "OR category = 'Any%')\r\n" + //
+                                        "AND levelCode = '" + Levelid + "'\r\n" + //
+                                        "GROUP BY runners.Name,runs.LevelCode\r\n" + //
+                                        "ORDER BY Time;";
+            }
+            else if(identification.equals("P"))
+            {
+                query = "SELECT runs.rowid, runners.Name, runners.ProfilePicture, min(runs.Time) as Time, difficulty.DifficultyName, difficulty.DifficultyDescription, runs.category, runs.comment, runs.video, runs.LevelCode\r\n" + //
+                                        "FROM runs\r\n" + //
+                                        "LEFT JOIN runners\r\n" + //
+                                        "ON runs.Runner = runners.UserID\r\n" + //
+                                        "LEFT JOIN difficulty\r\n" + //
+                                        "ON runs.difficulty = difficulty.DifficultyId\r\n" + //
+                                        "WHERE (category = 'P%' \r\n" + //
+                                        "OR category = 'P%')\r\n" + //
+                                        "AND levelCode = '" + Levelid + "'\r\n" + //
+                                        "GROUP BY runners.Name,runs.LevelCode\r\n" + //
+                                        "ORDER BY Time;";
+            }
+            else if(identification.equals("NoMo"))
+            {
+                query = "SELECT runs.rowid, runners.Name, runners.ProfilePicture, min(runs.Time) as Time, difficulty.DifficultyName, difficulty.DifficultyDescription, runs.category, runs.comment, runs.video, runs.LevelCode\r\n" + //
+                                        "FROM runs\r\n" + //
+                                        "LEFT JOIN runners\r\n" + //
+                                        "ON runs.Runner = runners.UserID\r\n" + //
+                                        "LEFT JOIN difficulty\r\n" + //
+                                        "ON runs.difficulty = difficulty.DifficultyId\r\n" + //
+                                        "WHERE (category = 'NoMo' \r\n" + //
+                                        "OR category = 'NoMo OOB')\r\n" + //
+                                        "AND levelCode = '" + Levelid + "'\r\n" + //
+                                        "GROUP BY runners.Name,runs.LevelCode\r\n" + //
+                                        "ORDER BY Time;";
+            }
+        }
+        
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            int RunID = results.getInt("rowid");
+            String UserProfile = results.getString("ProfilePicture");
+            String Name = results.getString("Name");
+            String Time = results.getString("Time");
+            String Difficulty = results.getString("DifficultyName");
+            String DifficultyDescription = results.getString("DifficultyDescription");
+            String Category = results.getString("categorty");
+            String Comment = results.getString("comment");
+            String Video = results.getString("video");
+            String LevelCode = results.getString("levelcode");
+
+            // Create a Country Object
+            AdvancedRun runReturn = new AdvancedRun(RunID,UserProfile,Name,Time,Difficulty,DifficultyDescription,Category,Comment,Video,LevelCode);
+
+            // Add the Country object to the array
+            runs.add(runReturn);
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the countries
+    return runs;
+}
 }
