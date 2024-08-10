@@ -18,16 +18,16 @@ public class LevelMaker
         thisLevel = jdbc.getLevel(levelCode);
 
         generatedCode = generatedCode + """
-                <div class="levelSelect">
-                    <div class="levelSelectThumbnail">
-                        <h2>""" + thisLevel.getLevelCode() + ": " +  thisLevel.getLevelName() + "</h2>";
-        generatedCode = generatedCode + "<img src='./Thumbnails/" + thisLevel.getLevelCode() + ".webp'>";
+                                <div class="levelSelect">
+                                    <div class="levelSelectThumbnail">
+                                        <h2>""" + thisLevel.getLevelCode() + ": " +  thisLevel.getLevelName() + "</h2>";
+       generatedCode = generatedCode + "<img src='./Thumbnails/" + thisLevel.getLevelCode() + ".webp'>";
         generatedCode = generatedCode + """
-                    </div>
+                                    </div>
 
-                    <div>
-                        <div class="flexBox" style="margin-bottom:5px; justify-content: space-around;">
-                            <button class="levelButtonSelected" onclick="toAny('""";
+                                    <div>
+                                        <div class="flexBox" style="margin-bottom:5px; justify-content: space-around;">
+                                            <button class="levelButtonSelected" onclick="toAny('""";
         generatedCode = generatedCode + thisLevel.getLevelCode();
         generatedCode = generatedCode + """
         ')"
