@@ -41,6 +41,28 @@ img.top-image {
    vertical-align: middle;
 }
 
+.runSelectContainer
+{
+   margin: 0 auto 0 auto;
+   width: 48vw;
+   padding: 1%;
+   border-radius: 0;
+   background-color: rgba(201, 7, 0, 0.1);
+}
+
+.runTableContainer
+{
+   margin: 0 auto 0 auto;
+   width: 48vw;
+   border-radius: 0;
+   background-color: rgba(255, 46, 39, 0.945);
+}
+
+.runTableContainer table
+{
+   
+}
+
 .flexBox
 {
    display: flex;
@@ -234,6 +256,62 @@ img.top-image {
    cursor: pointer;
 }
 
+.categoryButton
+{
+   background-color: rgb(0, 0, 0,0.5);
+   border: solid white;
+   color: white;
+   width: 32%;
+   height: 2vw;
+   padding: 0vw 2vw;
+   border-radius: 0.4vw;
+   font-family: UltrakillFont;
+   font-size: 150%;
+   cursor: pointer;
+}
+
+.categoryButton:hover
+{
+   background-color: rgb(238, 238, 238,0.5);
+   border: solid white;
+   color: white;
+   width: 32%;
+   height: 2vw;
+   padding: 0vw 2vw;
+   border-radius: 0.4vw;
+   font-family: UltrakillFont;
+   font-size: 150%;
+   cursor: pointer;
+}
+
+.categoryButtonSelected
+{
+   background-color: rgba(255, 255, 255, 1);
+   border: solid rgb(0, 0, 0);
+   color: rgb(0, 0, 0);
+   width: 32%;
+   height: 2vw;
+   padding: 0vw 2vw;
+   border-radius: 0.4vw;
+   font-family: UltrakillFont;
+   font-size: 150%;
+   cursor: pointer;
+}
+
+.categoryButtonSelected:hover
+{
+   background-color: rgba(78, 78, 78, 0.5);
+   border: solid rgb(237, 237, 237);
+   color: white;
+   width: 32%;
+   height: 2vw;
+   padding: 0vw 2vw;
+   border-radius: 0.4vw;
+   font-family: UltrakillFont;
+   font-size: 150%;
+   cursor: pointer;
+}
+
 .levelSelect
 {
    width: 100%;
@@ -382,3 +460,56 @@ img.top-image {
    background-color: #cccccc;
    padding: 10px;
  }
+
+
+
+ /* Dropdown Button */
+ .dropbtn {
+   background-color: #000000;
+   color: white;
+   padding: 16px 25px 16px 25px;
+   width: 46vw;
+   border-radius: 0.3vw;
+   font-size: 2vw;
+   font-family: UltrakillFont;
+   border: solid white;
+   cursor: pointer;
+ }
+ 
+ /* Dropdown button on hover & focus */
+ .dropbtn:hover, .dropbtn:focus {
+   background-color: #2980B9;
+ }
+ 
+ /* The container <div> - needed to position the dropdown content */
+ .dropdown {
+   position: relative;
+   display: inline-block;
+ }
+ 
+ /* Dropdown Content (Hidden by Default) */
+ .dropdown-content {
+   display: none;
+   position: absolute;
+   background-color: #f1f1f1;
+   width: 40vw;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+   z-index: 1;
+   overflow-y: scroll;
+   height: 30vw;
+ }
+ 
+ /* Links inside the dropdown */
+ .dropdown-content a {
+   color: black;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+   
+ }
+ 
+ /* Change color of dropdown links on hover */
+ .dropdown-content a:hover {background-color: #ddd;}
+ 
+ /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+ .show {display:block;} 
