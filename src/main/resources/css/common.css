@@ -54,13 +54,88 @@ img.top-image {
 {
    margin: 0 auto 0 auto;
    width: 48vw;
-   border-radius: 0;
-   background-color: rgba(255, 46, 39, 0.945);
+   padding: 1%;
 }
 
-.runTableContainer table
+.runTableContainer img
 {
-   
+   width: 2vw;
+}
+
+.runTableContainer div
+{
+   color: white;
+   font-family: UltraKillFont;
+   display: grid;
+   grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7%;
+   gap: 1%;
+   text-wrap: nowrap;
+}
+
+.runTableContainerAll
+{
+   margin: 0 auto 0 auto;
+   width: 48vw;
+   padding: 1%;
+}
+
+.runTableContainerAll img
+{
+   width: 2vw;
+}
+
+.runTableContainerAll div
+{
+   color: white;
+   font-family: UltraKillFont;
+   display: grid;
+   grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7% 10%;
+   gap: 1%;
+   text-wrap: nowrap;
+}
+
+.runTableContainerAny
+{
+   margin: 0 auto 0 auto;
+   width: 48vw;
+   padding: 1%;
+}
+
+.runTableContainerAny img
+{
+   width: 2vw;
+}
+
+.runTableContainerAny div
+{
+   color: white;
+   font-family: UltraKillFont;
+   display: grid;
+   grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7% 10% 5%;
+   gap: 1%;
+   text-wrap: nowrap;
+}
+
+.runTableContainerInstance
+{
+   padding: 6px 0px 6px 0px;
+   margin: 1px 0px 1px 0px;
+   border: solid rgb(72, 72, 72) 1px;
+}
+
+.runTableContainerInstance:nth-child(odd)
+{
+   background-color: rgb(21, 21, 21);
+}
+
+.runTableContainerInstance:nth-child(even)
+{
+   background-color: rgb(37, 37, 37);
+}
+
+.runTableContainerLevel
+{
+   text-align: center;
 }
 
 .flexBox
@@ -261,7 +336,7 @@ img.top-image {
    background-color: rgb(0, 0, 0,0.5);
    border: solid white;
    color: white;
-   width: 32%;
+   width: 30%;
    height: 2vw;
    padding: 0vw 2vw;
    border-radius: 0.4vw;
@@ -275,7 +350,7 @@ img.top-image {
    background-color: rgb(238, 238, 238,0.5);
    border: solid white;
    color: white;
-   width: 32%;
+   width: 30%;
    height: 2vw;
    padding: 0vw 2vw;
    border-radius: 0.4vw;
@@ -289,7 +364,7 @@ img.top-image {
    background-color: rgba(255, 255, 255, 1);
    border: solid rgb(0, 0, 0);
    color: rgb(0, 0, 0);
-   width: 32%;
+   width: 30%;
    height: 2vw;
    padding: 0vw 2vw;
    border-radius: 0.4vw;
@@ -303,7 +378,7 @@ img.top-image {
    background-color: rgba(78, 78, 78, 0.5);
    border: solid rgb(237, 237, 237);
    color: white;
-   width: 32%;
+   width: 30%;
    height: 2vw;
    padding: 0vw 2vw;
    border-radius: 0.4vw;
@@ -478,7 +553,7 @@ img.top-image {
  
  /* Dropdown button on hover & focus */
  .dropbtn:hover, .dropbtn:focus {
-   background-color: #2980B9;
+   background-color: rgba(255, 255, 255, 0.5);
  }
  
  /* The container <div> - needed to position the dropdown content */

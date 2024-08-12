@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
+import helper.LevelMaker;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -31,6 +32,7 @@ public class AdvancedTimes implements Handler {
     public void handle(Context context) throws Exception {
         JDBCConnection jdbc = new JDBCConnection();
         LevelTemplate selectedLevel = jdbc.getLevel(context.queryParam("level"));
+        LevelMaker elements = new LevelMaker();
         // Create a simple HTML webpage in a String
         String html = "<html>";
 
@@ -60,7 +62,6 @@ public class AdvancedTimes implements Handler {
                         <button onclick="myFunction()" class="dropbtn">
                                 """;
 
-        System.out.println("contextPath= " + context.queryParam("level"));
         if(context.queryParam("level").equals("all"))
         {
             html = html + "SELECT A LEVEL";
@@ -86,44 +87,76 @@ public class AdvancedTimes implements Handler {
         html = html + "<button class='categoryButtonSelected' id='anyButton' onclick='toAny()'>Any %</button>";
         html = html + "<button class='categoryButton' id='pButton' onclick='toP()'>P %</button>";
         html = html + "<button class='categoryButton' id='noMoButton' onclick='toNoMo()'>NoMo</button>";
+        html = html + "<button class='categoryButton' id='allButton' onclick='toAll()'>All</button>";
         html = html + "</div>";
         html = html + "</div>";
 
-        html = html + "<div class='runTableContainer'>";
-        html = html + "<table>";
+        
+        
         if(context.queryParam("level").equals("all"))
         {
+            html = html + "<div class='runTableContainerAll'>";
             html = html + """
-                <tr>
-                    <th>Rank</th>
-                    <th>Pfp</th>
-                    <th>Player</th>
-                    <th>Time</th>
-                    <th>Difficulty</th>
-                    <th>Inbounds</th>
-                    <th>Comment</th>
-                    <th>Video</th>
-                    <th>Level</th>
-                </tr>""";
+                <div class='runTableContainerHeaderAll'>
+                    <div>Rank</div>
+                    <div>Pfp</div>
+                    <div>Player</div>
+                    <div>Time</div>
+                    <div>Difficulty</div>
+                    <div>OOB?</div>
+                    <div>Comment</div>
+                    <div>Video</div>
+                    <div>Level</div>
+                </div>""";
+
+                html = html + "<span id='AnyPercent'>";
+            html = html + elements.GetAllRuns("Any");
+                html = html + "</span>";
+
+                html = html + "<span id='PPercent' style='display:none'>";
+            html = html + elements.GetAllRuns("P");
+                html = html + "</span>";
+
+                html = html + "<span id='NoMo' style='display:none'>";
+            html = html + elements.GetAllRuns("NoMo");
+                html = html + "</span>";
+            html = html + "</div>";
         }
         else
         {
+            html = html + "<div class='runTableContainer'>";
             html = html + """
-                <tr>
-                    <th>Rank</th>
-                    <th>Pfp</th>
-                    <th>Player</th>
-                    <th>Time</th>
-                    <th>Difficulty</th>
-                    <th>Inbounds</th>
-                    <th>Comment</th>
-                    <th>Video</th>
-                </tr>""";
-        }
+                <div>
+                    <div>Rank</div>
+                    <div>Pfp</div>
+                    <div>Player</div>
+                    <div>Time</div>
+                    <div>Difficulty</div>
+                    <div>OOB?</div>
+                    <div>Comment</div>
+                    <div>Video</div>
+                </div>""";
 
-        html = html + "</table>";
+                html = html + "<span id='AnyPercent'>";
+            html = html + elements.GetLevelRuns("Any",context.queryParam("level"));
+                html = html + "</span>";
+
+                html = html + "<span id='PPercent' style='display:none'>";
+            html = html + elements.GetLevelRuns("P",context.queryParam("level"));
+                html = html + "</span>";
+
+                html = html + "<span id='NoMo' style='display:none'>";
+            html = html + elements.GetLevelRuns("NoMo",context.queryParam("level"));
+                html = html + "</span>";
+
+                html = html + "<span id='All' style='display:none'>";
+            html = html + elements.GetLevelRunsAll(context.queryParam("level"));
+                html = html + "</span>";
+
+            html = html + "</div>";
+        }
         
-        html = html + "</div>";
+        
 
         // Finish the HTML webpage
         html = html + "</body>";
@@ -159,18 +192,44 @@ public class AdvancedTimes implements Handler {
                         document.getElementById("anyButton").className = "categoryButtonSelected";
                         document.getElementById("pButton").className = "categoryButton";
                         document.getElementById("noMoButton").className = "categoryButton";
+                        document.getElementById("allButton").className = "categoryButton";
+                        document.getElementById("AnyPercent").style.display = "inline";
+                        document.getElementById("PPercent").style.display = "none";
+                        document.getElementById("Nomo").style.display = "none";
+                        document.getElementById("All").style.display = "none";
                     }
 
                     function toP(){
                         document.getElementById("anyButton").className = "categoryButton";
                         document.getElementById("pButton").className = "categoryButtonSelected";
                         document.getElementById("noMoButton").className = "categoryButton";
+                        document.getElementById("allButton").className = "categoryButton";
+                        document.getElementById("AnyPercent").style.display = "none";
+                        document.getElementById("PPercent").style.display = "inline";
+                        document.getElementById("Nomo").style.display = "none";
+                        document.getElementById("All").style.display = "none";
                     }
 
                     function toNoMo(){
                         document.getElementById("anyButton").className = "categoryButton";
                         document.getElementById("pButton").className = "categoryButton";
                         document.getElementById("noMoButton").className = "categoryButtonSelected";
+                        document.getElementById("allButton").className = "categoryButton";
+                        document.getElementById("AnyPercent").style.display = "none";
+                        document.getElementById("PPercent").style.display = "none";
+                        document.getElementById("Nomo").style.display = "inline";
+                        document.getElementById("All").style.display = "none";
+                    }
+
+                    function toAll(){
+                        document.getElementById("anyButton").className = "categoryButton";
+                        document.getElementById("pButton").className = "categoryButton";
+                        document.getElementById("noMoButton").className = "categoryButton";
+                        document.getElementById("allButton").className = "categoryButtonSelected";
+                        document.getElementById("AnyPercent").style.display = "none";
+                        document.getElementById("PPercent").style.display = "none";
+                        document.getElementById("NoMo").style.display = "none";
+                        document.getElementById("All").style.display = "inline";
                     }
                 </script>
                 """;
