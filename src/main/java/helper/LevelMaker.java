@@ -99,7 +99,118 @@ public class LevelMaker
         return generatedCode;
     }
 
-    public String GetAllRuns(String selectedCategory)
+    public String GetAllRuns(String selectedCategory, String level, String type)
+    {
+        String generatedString = "";
+        int counter = 1;
+
+        JDBCConnection jdbc = new JDBCConnection();
+        NumberConversion numbs = new NumberConversion();
+
+        ArrayList<AdvancedRun> aRun = jdbc.getComplexRuns(selectedCategory,level);
+        if(type.equals("any"))
+        {
+            generatedString = generatedString + "<div class='runTableContainer'>";
+            generatedString = generatedString + """
+                <div style='grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7% 10%;'>
+                    <div>Rank</div>
+                    <div>Pfp</div>
+                    <div>Player</div>
+                    <div>Time</div>
+                    <div>Difficulty</div>
+                    <div>OOB?</div>
+                    <div>Comment</div>
+                    <div>Video</div>
+                    <div style='text-align:center;'>Level</div>
+                </div>""";
+
+        for (AdvancedRun userRun : aRun)
+        {
+                generatedString = generatedString + "<a href='/userRuns.html?runId=" + userRun.getRunID() + "&prev=All'>";
+                generatedString = generatedString + "<div class='runTableContainerInstance' style='grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7% 10%;'>";
+                    generatedString = generatedString + "<div class='runTableContainerLevel'>" + counter + "</div>";
+                    generatedString = generatedString + "<div><img src='" + userRun.getPfp() + "'></div>";
+                    generatedString = generatedString + "<div>" + userRun.getName() + "</div>";
+                    generatedString = generatedString + "<div>" + numbs.ToDuration(userRun.getTime()) + "</div>";
+                    generatedString = generatedString + "<div>" + userRun.getDifficulty() + "</div>";
+                    generatedString = generatedString + "<div>";
+                        if(userRun.getCategory().equals("Any% OOB")||userRun.getCategory().equals("P% OOB")||userRun.getCategory().equals("NoMo OOB"))
+                        {
+                            generatedString = generatedString + "<img src='OutOfBounds.png' alt='Out Of Bounds'>";
+                        }
+                    generatedString = generatedString + "</div>";
+                    generatedString = generatedString + "<div>";
+                        if(userRun.getComment() != null)
+                        {
+                            generatedString = generatedString + "<img src='Comment.png' alt='Contains Comment'>";
+                        }
+                    generatedString = generatedString + "</div>";
+                    generatedString = generatedString + "<div>";
+                        if(userRun.getVideo() != null)
+                        {
+                            generatedString = generatedString + "<img src='Video.png' alt='Contains Video'>";
+                        }
+                    generatedString = generatedString + "</div>";
+                    generatedString = generatedString + "<div class='runTableContainerLevel'>" + userRun.getLevelCode() + "</div>";
+                generatedString = generatedString + "</div>";
+            generatedString = generatedString + "</a>";
+            counter = counter + 1;
+        }
+    }
+
+    else if(type.equals("level"))
+    {
+        generatedString = generatedString + "<div class='runTableContainer'>";
+        generatedString = generatedString + """
+            <div style='grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7%;'>
+                <div>Rank</div>
+                <div>Pfp</div>
+                <div>Player</div>
+                <div>Time</div>
+                <div>Difficulty</div>
+                <div>OOB?</div>
+                <div>Comment</div>
+                <div>Video</div>
+            </div>""";
+
+        for (AdvancedRun userRun : aRun)
+        {
+            generatedString = generatedString + "<a href='/userRuns.html?runId=" + userRun.getRunID() + "&prev=" + level + "'>";
+                generatedString = generatedString + "<div class='runTableContainerInstance' style='grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7%;'>";
+                    generatedString = generatedString + "<div class='runTableContainerLevel'>" + counter + "</div>";
+                    generatedString = generatedString + "<div><img src='" + userRun.getPfp() + "'></div>";
+                    generatedString = generatedString + "<div>" + userRun.getName() + "</div>";
+                    generatedString = generatedString + "<div>" + numbs.ToDuration(userRun.getTime()) + "</div>";
+                    generatedString = generatedString + "<div>" + userRun.getDifficulty() + "</div>";
+                    generatedString = generatedString + "<div>";
+                        if(userRun.getCategory().equals("Any% OOB")||userRun.getCategory().equals("P% OOB")||userRun.getCategory().equals("NoMo OOB"))
+                        {
+                            generatedString = generatedString + "<img src='OutOfBounds.png' alt='Out Of Bounds'>";
+                        }
+                    generatedString = generatedString + "</div>";
+                    generatedString = generatedString + "<div>";
+                        if(userRun.getComment() != null)
+                        {
+                            generatedString = generatedString + "<img src='Comment.png' alt='Contains Comment'>";
+                        }
+                    generatedString = generatedString + "</div>";
+                    generatedString = generatedString + "<div>";
+                        if(userRun.getVideo() != null)
+                        {
+                            generatedString = generatedString + "<img src='Video.png' alt='Contains Video'>";
+                        }
+                    generatedString = generatedString + "</div>";
+                    generatedString = generatedString + "</div>";
+                generatedString = generatedString + "</a>";
+            counter = counter + 1;
+        }
+    }
+    System.out.println(generatedString);
+        return generatedString;
+    }
+
+
+    public String GetAllRunstemp(String selectedCategory)
     {
         String generatedString = "";
         int counter = 1;

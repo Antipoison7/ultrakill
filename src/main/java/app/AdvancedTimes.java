@@ -94,61 +94,41 @@ public class AdvancedTimes implements Handler {
         
         if(context.queryParam("level").equals("all"))
         {
-            html = html + "<div class='runTableContainerAll'>";
-            html = html + """
-                <div class='runTableContainerHeaderAll'>
-                    <div>Rank</div>
-                    <div>Pfp</div>
-                    <div>Player</div>
-                    <div>Time</div>
-                    <div>Difficulty</div>
-                    <div>OOB?</div>
-                    <div>Comment</div>
-                    <div>Video</div>
-                    <div>Level</div>
-                </div>""";
+            
 
                 html = html + "<span id='AnyPercent'>";
-            html = html + elements.GetAllRuns("Any");
+            html = html + elements.GetAllRuns("Any","all","any");
+                html = html + "</div>";
                 html = html + "</span>";
 
-                html = html + "<span id='PPercent' style='display:none'>";
-            html = html + elements.GetAllRuns("P");
+                html = html + "<span id='PPercent' style='display:none;'>";
+            html = html + elements.GetAllRuns("P","all","any");
+                html = html + "</div>";
                 html = html + "</span>";
 
-                html = html + "<span id='NoMo' style='display:none'>";
-            html = html + elements.GetAllRuns("NoMo");
+                html = html + "<span id='NoMo' style='display:none;'>";
+            html = html + elements.GetAllRuns("NoMo","all","any");
+                html = html + "</div>";
                 html = html + "</span>";
-            html = html + "</div>";
+            
         }
         else
         {
-            html = html + "<div class='runTableContainer'>";
-            html = html + """
-                <div>
-                    <div>Rank</div>
-                    <div>Pfp</div>
-                    <div>Player</div>
-                    <div>Time</div>
-                    <div>Difficulty</div>
-                    <div>OOB?</div>
-                    <div>Comment</div>
-                    <div>Video</div>
-                </div>""";
 
                 html = html + "<span id='AnyPercent'>";
-            html = html + elements.GetLevelRuns("Any",context.queryParam("level"));
+            html = html + elements.GetAllRuns("Any",context.queryParam("level"),"level");
+                html = html + "</div>";
                 html = html + "</span>";
 
                 html = html + "<span id='PPercent' style='display:none'>";
-            html = html + elements.GetLevelRuns("P",context.queryParam("level"));
+            html = html + elements.GetAllRuns("P",context.queryParam("level"),"level");
+                html = html + "</div>";
                 html = html + "</span>";
 
                 html = html + "<span id='NoMo' style='display:none'>";
-            html = html + elements.GetLevelRuns("NoMo",context.queryParam("level"));
+            html = html + elements.GetAllRuns("NoMo",context.queryParam("level"),"level");
+                html = html + "</div>";
                 html = html + "</span>";
-
-            html = html + "</div>";
         }
         
         
