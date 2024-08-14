@@ -38,4 +38,12 @@ public class NumberConversion
 
         return durationString;
     }
+
+    public String ToYoutube(String ytURL)
+    {
+        YouTubeHelper youTubeHelper = new YouTubeHelper();
+        String yts = "<iframe height = '100%' width = '100%' src='https://www.youtube.com/embed/" + youTubeHelper.extractVideoIdFromUrl(ytURL) + "' title='YouTube video player' frameborder='0' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>";
+
+        return yts;
+    }
 }
