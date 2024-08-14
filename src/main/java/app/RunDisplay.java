@@ -88,7 +88,20 @@ public class RunDisplay implements Handler {
             }
         html = html + "</div>";
         html = html + "<div>";
-            html = html + "<h3>Category: " + userRun.getCategory() + "</h3>";
+            html = html + "<h3>Category: ";  
+            if((userRun.getCategory().equals("Any%"))||(userRun.getCategory().equals("Any% OOB")))
+            {
+                html = html + "<span class='aRanked'>" + userRun.getCategory() + "</span>";
+            }
+            else if((userRun.getCategory().equals("P%"))||(userRun.getCategory().equals("P% OOB")))
+            {
+                html = html + "<span class='pRanked'>" + userRun.getCategory() + "</span>";
+            }
+            else if((userRun.getCategory().equals("NoMo"))||(userRun.getCategory().equals("NoMo OOB")))
+            {
+                html = html + "<span class='NmRanked'>" + userRun.getCategory() + "</span>";
+            }
+            html = html + "</h3>";
             html = html + "<h3>Time: " + converter.ToDuration(userRun.getTime()) + "</h3>";
             html = html + "<h3>Difficulty: " + userRun.getDifficulty() + "</h3>";
             html = html + "<h3>Exit: " + userRun.getExit() + "</h3>";
