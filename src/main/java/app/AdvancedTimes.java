@@ -87,6 +87,7 @@ public class AdvancedTimes implements Handler {
         html = html + "<button class='categoryButtonSelected' id='anyButton' onclick='toAny()'>Any %</button>";
         html = html + "<button class='categoryButton' id='pButton' onclick='toP()'>P %</button>";
         html = html + "<button class='categoryButton' id='noMoButton' onclick='toNoMo()'>NoMo</button>";
+        html = html + "<button class='categoryButton' id='allButton' onclick='toAll()'>All</button>";
         html = html + "</div>";
         html = html + "</div>";
 
@@ -110,6 +111,11 @@ public class AdvancedTimes implements Handler {
             html = html + elements.GetAllRuns("NoMo","all","any");
                 html = html + "</div>";
                 html = html + "</span>";
+
+                html = html + "<span id='All' style='display:none;'>";
+            html = html + elements.GetAllRuns("NoMo","all","allAny");
+                html = html + "</div>";
+                html = html + "</span>";
             
         }
         else
@@ -127,6 +133,11 @@ public class AdvancedTimes implements Handler {
 
                 html = html + "<span id='NoMo' style='display:none'>";
             html = html + elements.GetAllRuns("NoMo",context.queryParam("level"),"level");
+                html = html + "</div>";
+                html = html + "</span>";
+
+                html = html + "<span id='All' style='display:none'>";
+            html = html + elements.GetAllRuns("NoMo",context.queryParam("level"),"allLevel");
                 html = html + "</div>";
                 html = html + "</span>";
         }
@@ -167,27 +178,44 @@ public class AdvancedTimes implements Handler {
                         document.getElementById("anyButton").className = "categoryButtonSelected";
                         document.getElementById("pButton").className = "categoryButton";
                         document.getElementById("noMoButton").className = "categoryButton";
+                        document.getElementById("allButton").className = "categoryButton";
                         document.getElementById("AnyPercent").style.display = "inline";
                         document.getElementById("PPercent").style.display = "none";
                         document.getElementById("NoMo").style.display = "none";
+                        document.getElementById("All").style.display = "none";
                     }
 
                     function toP(){
                         document.getElementById("anyButton").className = "categoryButton";
                         document.getElementById("pButton").className = "categoryButtonSelected";
                         document.getElementById("noMoButton").className = "categoryButton";
+                        document.getElementById("allButton").className = "categoryButton";
                         document.getElementById("AnyPercent").style.display = "none";
                         document.getElementById("PPercent").style.display = "inline";
                         document.getElementById("NoMo").style.display = "none";
+                        document.getElementById("All").style.display = "none";
                     }
 
                     function toNoMo(){
                         document.getElementById("anyButton").className = "categoryButton";
                         document.getElementById("pButton").className = "categoryButton";
                         document.getElementById("noMoButton").className = "categoryButtonSelected";
+                        document.getElementById("allButton").className = "categoryButton";
                         document.getElementById("AnyPercent").style.display = "none";
                         document.getElementById("PPercent").style.display = "none";
                         document.getElementById("NoMo").style.display = "inline";
+                        document.getElementById("All").style.display = "none";
+                    }
+
+                    function toAll(){
+                        document.getElementById("anyButton").className = "categoryButton";
+                        document.getElementById("pButton").className = "categoryButton";
+                        document.getElementById("noMoButton").className = "categoryButton";
+                        document.getElementById("allButton").className = "categoryButtonSelected";
+                        document.getElementById("AnyPercent").style.display = "none";
+                        document.getElementById("PPercent").style.display = "none";
+                        document.getElementById("NoMo").style.display = "none";
+                        document.getElementById("All").style.display = "inline";
                     }
                 </script>
                 """;
