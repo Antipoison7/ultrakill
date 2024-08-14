@@ -500,6 +500,27 @@ img.top-image {
    border-bottom: solid white;
 }
 
+.userRun
+{
+   color: white;
+   background-color: #000000;
+   font-family: UltrakillFont;
+   font-size: 1vw;
+   padding:10px;
+   border-radius:5px;
+}
+
+.userRun h2
+{
+   margin: 3px 0px 10px 0px;
+}
+
+.userRunComment
+{
+   height: 1vw;
+   margin-right: 5px;
+}
+
 
 /* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */
 /* Style the top navigation bar */
