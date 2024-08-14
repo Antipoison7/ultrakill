@@ -477,9 +477,9 @@ public ArrayList<AdvancedRun> getComplexRuns(String identification, String Level
     return runs;
 }
 
-public ArrayList<AdvancedRun> getComplexRunsAll(String Levelid) {
+public AdvancedRun getIndividualRun(String runID) {
     // Create the ArrayList of Country objects to return
-    ArrayList<AdvancedRun> runs = new ArrayList<AdvancedRun>();
+    AdvancedRun runDetails = new AdvancedRun(0,"","","","","","","","","","","");
 
     // Setup the variable for the JDBC connection
     Connection connection = null;
@@ -493,15 +493,17 @@ public ArrayList<AdvancedRun> getComplexRunsAll(String Levelid) {
         statement.setQueryTimeout(30);
 
         // The Query
-        String query = "SELECT runs.rowid, runners.Name, runners.ProfilePicture, min(runs.Time) as Time, difficulty.DifficultyName, difficulty.DifficultyDescription, runs.category, runs.comment, runs.video, runs.LevelCode\r\n" + //
-                        "FROM runs\r\n" + //
-                        "LEFT JOIN runners\r\n" + //
-                        "ON runs.Runner = runners.UserID\r\n" + //
-                        "LEFT JOIN difficulty\r\n" + //
-                        "ON runs.difficulty = difficulty.DifficultyId\r\n" + //
-                        "WHERE levelCode='" + Levelid + "'\r\n" + //
-                        "GROUP BY runners.Name,runs.category\r\n" + //
-                        "ORDER BY Time;";
+        String query = "SELECT Runs.rowId as runID,runners.ProfilePicture, Runs.Category, Runners.name, Runs.time, Runs.video, Runs.comment, Runs.levelCode, level.LevelName, Difficulty.DifficultyName, Difficulty.DifficultyDescription, Runs.exit \r\n" + //
+                        "FROM Runs \r\n" + //
+                        "LEFT JOIN Runners \r\n" + //
+                        "ON Runners.userid = Runs.runner \r\n" + //
+                        "LEFT JOIN Level \r\n" + //
+                        "ON Level.LevelCode = Runs.LevelCode \r\n" + //
+                        "LEFT JOIN difficulty \r\n" + //
+                        "ON difficulty.DifficultyId = Runs.Difficulty \r\n" + //
+                        "LEFT JOIN category \r\n" + //
+                        "ON category.CategoryName = Runs.Category\r\n" + //
+                        "WHERE runs.rowid='" + runID + "'";
         
         // Get Result
         ResultSet results = statement.executeQuery(query);
@@ -509,22 +511,21 @@ public ArrayList<AdvancedRun> getComplexRunsAll(String Levelid) {
         // Process all of the results
         while (results.next()) {
             // Lookup the columns we need
-            int RunID = results.getInt("rowid");
+            int runid = Integer.parseInt(results.getString("runID"));
             String UserProfile = results.getString("ProfilePicture");
-            String Name = results.getString("Name");
-            String Time = results.getString("Time");
+            String Name = results.getString("name");
+            String Time = results.getString("time");
             String Difficulty = results.getString("DifficultyName");
             String DifficultyDescription = results.getString("DifficultyDescription");
-            String Category = results.getString("category");
+            String Category = results.getString("Category");
             String Comment = results.getString("comment");
             String Video = results.getString("video");
-            String LevelCode = results.getString("levelcode");
+            String LevelCode = results.getString("levelCode");
+            String LevelName = results.getString("levelName");
+            String Exit = results.getString("exit");
 
             // Create a Country Object
-            AdvancedRun runReturn = new AdvancedRun(RunID,UserProfile,Name,Time,Difficulty,DifficultyDescription,Category,Comment,Video,LevelCode);
-
-            // Add the Country object to the array
-            runs.add(runReturn);
+            runDetails = new AdvancedRun(runid,UserProfile,Name,Time,Difficulty,DifficultyDescription,Category,Comment,Video,LevelCode,LevelName,Exit);
         }
 
         // Close the statement because we are done with it
@@ -545,6 +546,6 @@ public ArrayList<AdvancedRun> getComplexRunsAll(String Levelid) {
     }
 
     // Finally we return all of the countries
-    return runs;
+    return runDetails;
 }
 }
