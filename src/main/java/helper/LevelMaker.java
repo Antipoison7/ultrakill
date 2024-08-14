@@ -291,7 +291,7 @@ public class LevelMaker
         for (AdvancedRun userRun : aRun)
         {
                 generatedString = generatedString + "<a href='/userRuns.html?runId=" + userRun.getRunID() + "&prev=All'>";
-                generatedString = generatedString + "<div class='runTableContainerInstance' style='grid-template-columns: 4% 5% 22% 13% 13% 5% 7% 7% 10% 5%;'>";
+                generatedString = generatedString + "<div class='runTableContainerInstance' style='grid-template-columns: 4% 6% 25% 17% 13% 5% 8% 8% 6%;'>";
                     generatedString = generatedString + "<div class='runTableContainerLevel'>" + counter + "</div>";
                     generatedString = generatedString + "<div><img src='" + userRun.getPfp() + "'></div>";
                     generatedString = generatedString + "<div>" + userRun.getName() + "</div>";
