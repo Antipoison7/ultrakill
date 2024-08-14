@@ -1,6 +1,6 @@
 This project aims to create a website for displaying speedrun times from the various categories (as used on speedrun.com), utilizing a sqlite3 database in order to dynamically create the leaderboards.
 
-Current Libraries
+Primary Libraries
 
 org.xerial.sqlite-jdbc (SQLite JDBC library)<br>
 javalin (lightweight Java Webserver)
