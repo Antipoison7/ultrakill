@@ -67,51 +67,6 @@ img.top-image {
    color: white;
    font-family: UltraKillFont;
    display: grid;
-   grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7%;
-   gap: 1%;
-   text-wrap: nowrap;
-}
-
-.runTableContainerAll
-{
-   margin: 0 auto 0 auto;
-   width: 48vw;
-   padding: 1%;
-}
-
-.runTableContainerAll img
-{
-   width: 2vw;
-}
-
-.runTableContainerAll div
-{
-   color: white;
-   font-family: UltraKillFont;
-   display: grid;
-   grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7% 10%;
-   gap: 1%;
-   text-wrap: nowrap;
-}
-
-.runTableContainerAny
-{
-   margin: 0 auto 0 auto;
-   width: 48vw;
-   padding: 1%;
-}
-
-.runTableContainerAny img
-{
-   width: 2vw;
-}
-
-.runTableContainerAny div
-{
-   color: white;
-   font-family: UltraKillFont;
-   display: grid;
-   grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7% 10% 5%;
    gap: 1%;
    text-wrap: nowrap;
 }
@@ -121,6 +76,16 @@ img.top-image {
    padding: 6px 0px 6px 0px;
    margin: 1px 0px 1px 0px;
    border: solid rgb(72, 72, 72) 1px;
+   align-items: center;
+}
+
+.runTableContainerInstance:hover
+{
+   padding: 6px 0px 6px 0px;
+   margin: 1px 0px 1px 0px;
+   border: solid rgb(72, 72, 72) 1px;
+   background-color: #210000 !important;
+   align-items: center;
 }
 
 .runTableContainerInstance:nth-child(odd)
