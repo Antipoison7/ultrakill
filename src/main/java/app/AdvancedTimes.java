@@ -148,10 +148,6 @@ public class AdvancedTimes implements Handler {
             html = html + elements.GetLevelRuns("NoMo",context.queryParam("level"));
                 html = html + "</span>";
 
-                html = html + "<span id='All' style='display:none'>";
-            html = html + elements.GetLevelRunsAll(context.queryParam("level"));
-                html = html + "</span>";
-
             html = html + "</div>";
         }
         
