@@ -45,6 +45,7 @@ public class App {
         app.get(AddTimes.URL, new AddTimes());
         app.get(Settings.URL, new Settings());
         app.get(Intermediate.URL, new Intermediate());
+        app.get(RunDisplay.URL, new RunDisplay());
 
         // Add / uncomment POST commands for any pages that need web form POSTS
         // app.post(PageIndex.URL, new PageIndex());
