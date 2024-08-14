@@ -480,11 +480,6 @@ img.top-image {
    margin: 3px 0px 10px 0px;
 }
 
-.userRun h3::after
-{
-   margin: 3px 0px 10px 0px;
-}
-
 .userRunComment
 {
    height: 1vw;
