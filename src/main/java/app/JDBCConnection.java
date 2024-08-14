@@ -1,6 +1,7 @@
 package app;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import helper.BasicRun;
 import helper.NumberConversion;
@@ -430,6 +431,86 @@ public ArrayList<AdvancedRun> getComplexRuns(String identification, String Level
                                         "GROUP BY runners.Name,runs.LevelCode\r\n" + //
                                         "ORDER BY Time;";
             }
+        }
+        
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            int RunID = results.getInt("rowid");
+            String UserProfile = results.getString("ProfilePicture");
+            String Name = results.getString("Name");
+            String Time = results.getString("Time");
+            String Difficulty = results.getString("DifficultyName");
+            String DifficultyDescription = results.getString("DifficultyDescription");
+            String Category = results.getString("category");
+            String Comment = results.getString("comment");
+            String Video = results.getString("video");
+            String LevelCode = results.getString("levelcode");
+
+            // Create a Country Object
+            AdvancedRun runReturn = new AdvancedRun(RunID,UserProfile,Name,Time,Difficulty,DifficultyDescription,Category,Comment,Video,LevelCode);
+
+            // Add the Country object to the array
+            runs.add(runReturn);
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the countries
+    return runs;
+}
+
+public ArrayList<AdvancedRun> getAllComplexRuns(String Levelid) {
+    // Create the ArrayList of Country objects to return
+    ArrayList<AdvancedRun> runs = new ArrayList<AdvancedRun>();
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        // The Query
+        String query = "";
+
+        if(Levelid.equals("all"))
+        {
+                            query = "SELECT runs.rowid, runners.Name, runners.ProfilePicture, min(runs.Time) as Time, difficulty.DifficultyName, difficulty.DifficultyDescription, runs.category, runs.comment, runs.video, runs.LevelCode\r\n" + //
+                                                                "FROM runs\r\n" + //
+                                                                "LEFT JOIN runners\r\n" + //
+                                                                "ON runs.Runner = runners.UserID\r\n" + //
+                                                                "LEFT JOIN difficulty\r\n" + //
+                                                                "ON runs.difficulty = difficulty.DifficultyId\r\n" + //
+                                                                "GROUP BY runners.Name,runs.LevelCode,runs.category\r\n" + //
+                                                                "ORDER BY Time;";
+            
+        }
+        else
+        {
+            query = "SELECT runs.rowid, runners.Name, runners.ProfilePicture, min(runs.Time) as Time, difficulty.DifficultyName, difficulty.DifficultyDescription, runs.category, runs.comment, runs.video, runs.LevelCode FROM runs LEFT JOIN runners ON runs.Runner = runners.UserID LEFT JOIN difficulty ON runs.difficulty = difficulty.DifficultyId WHERE levelcode = '" + Levelid + "' GROUP BY runners.Name,runs.LevelCode,runs.category ORDER BY Time;";
         }
         
         // Get Result
