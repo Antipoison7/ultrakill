@@ -18,6 +18,8 @@ public class AdvancedRun {
    private String Comment;
    private String Video;
    private String LevelCode;
+   private String LevelName;
+   private String Exit;
 
    /**
     * Create a Country and set the fields
@@ -33,6 +35,21 @@ public class AdvancedRun {
       this.Comment = comment;
       this.Video = video;
       this.LevelCode = levelcode;
+   }
+
+   public AdvancedRun(int Runid, String userprofile, String name, String time, String difficulty, String difficultyDescription, String category, String comment, String video, String levelcode, String levelname, String exit) {
+      this.RunID = Runid;
+      this.UserProfile = userprofile;
+      this.Name = name;
+      this.Time = time;
+      this.Difficulty = difficulty;
+      this.DifficultyDescription = difficultyDescription;
+      this.Category = category;
+      this.Comment = comment;
+      this.Video = video;
+      this.LevelCode = levelcode;
+      this.LevelName = levelname;
+      this.Exit = exit;
    }
 
    public int getRunID(){ 
@@ -73,6 +90,14 @@ public class AdvancedRun {
 
    public String getLevelCode() {
       return LevelCode;
+   }
+
+   public String getLevelName() {
+      return LevelName;
+   }
+
+   public String getExit() {
+      return Exit;
    }
    
 }
