@@ -22,10 +22,10 @@ import java.sql.Statement;
  * @author Halil Ali, 2024. email: halil.ali@rmit.edu.au
  */
 
-public class Settings implements Handler {
+public class AddRunner implements Handler {
 
     // URL of this page relative to http://localhost:7001/
-    public static final String URL = "/userSettings.html";
+    public static final String URL = "/addRunner.html";
 
     @Override
     public void handle(Context context) throws Exception {
@@ -34,7 +34,7 @@ public class Settings implements Handler {
 
         // Add some Head information
         html = html + "<head>" + 
-               "<title>Change Settings</title>";
+               "<title>Runner Lookup</title>";
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
@@ -42,6 +42,15 @@ public class Settings implements Handler {
 
         // Add the body
         html = html + "<body>";
+
+        html = html + "<body>";
+        html = html + """
+                <div class="flexBox" style="justify-content:space-between; margin-bottom:10px;">
+                <a href="./"><button type="button" class="button">Back</button></a>
+                <h1 class='ultrakillTitleText'>-- Level Select --</h1>
+                <div style="width:15vw;height:4vw;padding: 0vw 2vw;"></div>
+                </div>
+                """;
 
         // Finish the HTML webpage
         html = html + "</body>" + "</html>";

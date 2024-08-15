@@ -43,9 +43,10 @@ public class App {
         app.get(ViewTimes.URL, new ViewTimes());
         app.get(AdvancedTimes.URL, new AdvancedTimes());
         app.get(AddTimes.URL, new AddTimes());
-        app.get(Settings.URL, new Settings());
+        app.get(Runners.URL, new Runners());
         app.get(Intermediate.URL, new Intermediate());
         app.get(RunDisplay.URL, new RunDisplay());
+        app.get(AddRunner.URL, new AddRunner());
 
         // Add / uncomment POST commands for any pages that need web form POSTS
         // app.post(PageIndex.URL, new PageIndex());
@@ -54,6 +55,7 @@ public class App {
         app.post(AddTimes.URL, new AddTimes());
         // app.post(PageST3B.URL, new PageST3B());
         app.post(Intermediate.URL, new Intermediate());
+        app.post(AddRunner.URL, new AddRunner());
     }
 
 }
