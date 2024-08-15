@@ -428,4 +428,41 @@ public class LevelMaker
         return generatedString;
     }
 
+    public String getRunners(int runnerId)
+    {
+        String html = "";
+
+        JDBCConnection jdbc = new JDBCConnection();
+        NumberConversion numbs = new NumberConversion();
+
+        
+
+        // ArrayList<AdvancedRun> uRuns = jdbc.getUserBosses(runnerId);
+
+    
+        html = html + "<a href='./userDisplay.html?user=" + runnerId + "'>";
+        html = html + "    <div style='width:20vw' class='playerBox'>";
+        html = html + "        <h2>Connor Orders</h2>";
+        html = html + "        <img src='Pfp/Connor.jpg' width='40%'>";
+        html = html + "        <h3>Boss Times</h3>";
+        html = html + "        <div class='flexBox'>";
+        html = html + "            <div>";
+        html = html + "                <p>1-4: 01:03.078</p>";
+        html = html + "                <p>2-4: 01:03.078</p>";
+        html = html + "                <p>3-2: 01:03.078</p>";
+        html = html + "                <p>4-4: 01:03.078</p>";
+        html = html + "            </div>";
+        html = html + "            <div>";
+        html = html + "                <p>5-4: 01:03.078</p>";
+        html = html + "                <p>6-2: 01:03.078</p>";
+        html = html + "                <p>7-4: 01:03.078</p>";
+        html = html + "                <p>p-1: 01:03.078</p>";
+        html = html + "            </div>";
+        html = html + "        </div>";
+        html = html + "    </div>";
+        html = html + "</a>";
+            
+        return html;
+    }
+
 }
