@@ -84,10 +84,10 @@ public class AdvancedTimes implements Handler {
                     </div> 
                 """;
         html = html + "<div class='flexBox'style='margin-bottom:5px; margin-top: 5px; justify-content: space-around;'>";
-        html = html + "<button class='categoryButtonSelected' id='anyButton' onclick='toAny()'>Any %</button>";
+        html = html + "<button class='categoryButtonSelected' id='allButton' onclick='toAll()'>All</button>";
+        html = html + "<button class='categoryButton' id='anyButton' onclick='toAny()'>Any %</button>";
         html = html + "<button class='categoryButton' id='pButton' onclick='toP()'>P %</button>";
         html = html + "<button class='categoryButton' id='noMoButton' onclick='toNoMo()'>NoMo</button>";
-        html = html + "<button class='categoryButton' id='allButton' onclick='toAll()'>All</button>";
         html = html + "</div>";
         html = html + "</div>";
 
@@ -97,7 +97,7 @@ public class AdvancedTimes implements Handler {
         {
             
 
-                html = html + "<span id='AnyPercent'>";
+                html = html + "<span id='AnyPercent' style='display:none;'>";
             html = html + elements.GetAllRuns("Any","all","any");
                 html = html + "</div>";
                 html = html + "</span>";
@@ -112,7 +112,7 @@ public class AdvancedTimes implements Handler {
                 html = html + "</div>";
                 html = html + "</span>";
 
-                html = html + "<span id='All' style='display:none;'>";
+                html = html + "<span id='All'>";
             html = html + elements.GetAllRuns("NoMo","all","allAny");
                 html = html + "</div>";
                 html = html + "</span>";
@@ -121,7 +121,7 @@ public class AdvancedTimes implements Handler {
         else
         {
 
-                html = html + "<span id='AnyPercent'>";
+                html = html + "<span id='AnyPercent' style='display:none;'>";
             html = html + elements.GetAllRuns("Any",context.queryParam("level"),"level");
                 html = html + "</div>";
                 html = html + "</span>";
@@ -136,7 +136,7 @@ public class AdvancedTimes implements Handler {
                 html = html + "</div>";
                 html = html + "</span>";
 
-                html = html + "<span id='All' style='display:none'>";
+                html = html + "<span id='All'>";
             html = html + elements.GetAllRuns("NoMo",context.queryParam("level"),"allLevel");
                 html = html + "</div>";
                 html = html + "</span>";
