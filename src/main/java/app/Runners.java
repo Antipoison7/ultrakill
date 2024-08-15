@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
+import helper.LevelMaker;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -29,6 +31,7 @@ public class Runners implements Handler {
 
     @Override
     public void handle(Context context) throws Exception {
+        LevelMaker elements = new LevelMaker();
         // Create a simple HTML webpage in a String
         String html = "<html>";
 
@@ -53,30 +56,9 @@ public class Runners implements Handler {
                 """;
 
         html = html + "<div class = 'playersLayout'>";
-        html = html + """
-            <div style='width:20vw'>
-                <h2>Connor Orders</h2>
-                <img src='Pfp/Connor.jpg' width='40%'>
-                <h3>Boss Times</h3>
-                <div class='flexBox'>
-                    <div>
-                        <p>1-4: 01:03.078</p>
-                        <p>2-4: 01:03.078</p>
-                        <p>3-2: 01:03.078</p>
-                        <p>4-4: 01:03.078</p>
-                    </div>
-                    <div>
-                        <p>5-4: 01:03.078</p>
-                        <p>6-2: 01:03.078</p>
-                        <p>7-4: 01:03.078</p>
-                        <p>p-1: 01:03.078</p>
-                    </div>
-                </div>
-            </div>
-            """;
-
-                    
-
+        for(int i = 1; i <= 8; i++){
+        html = html + elements.getRunners(i);
+        }
                         
         html = html + "</div>";
 
