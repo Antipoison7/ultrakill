@@ -501,6 +501,22 @@ img.top-image {
    color:lime;
 }
 
+.playersLayout
+{
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   width: 65vw;
+   margin: 15px auto 10px auto;
+}
+
+.playersLayout div
+{
+   background-color: gray;
+   color: white;
+   font-family: UltrakillFont;
+}
+
 /* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */
 /* Style the top navigation bar */
 .topnav {
