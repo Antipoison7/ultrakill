@@ -5,6 +5,7 @@ import java.util.logging.Level;
 
 import helper.BasicRun;
 import helper.NumberConversion;
+import helper.RunnerDetails;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -628,5 +629,57 @@ public AdvancedRun getIndividualRun(String runID) {
 
     // Finally we return all of the countries
     return runDetails;
+}
+
+public RunnerDetails getUserDetails(int userId) {
+    // Create the ArrayList of Country objects to return
+    RunnerDetails details = new RunnerDetails("","","","","");
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        // The Query
+        String query = "SELECT * FROM Country";
+        
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            String m49Code     = results.getString("m49code");
+            String name  = results.getString("countryName");
+
+            // Create a Country Object
+            details = new RunnerDetails("","","","","");
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the countries
+    return details;
 }
 }
