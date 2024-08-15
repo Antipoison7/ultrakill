@@ -504,17 +504,43 @@ img.top-image {
 .playersLayout
 {
    display: flex;
-   justify-content: space-between;
+   justify-content: space-evenly;
    flex-wrap: wrap;
+   flex-direction: row;
    width: 65vw;
    margin: 15px auto 10px auto;
 }
 
+.playersLayout img
+{
+   display: block;
+   margin: 0px auto 0px auto;
+   border-radius: 10px;
+}
+
+.playersLayout h2,h3
+{
+   margin: 10px 0px 10px 0px;
+   text-align: center;
+   font-weight: bold;
+}
+
 .playersLayout div
 {
-   background-color: gray;
+   background-color: rgb(73, 73, 73);
    color: white;
    font-family: UltrakillFont;
+   border-radius: 10px;
+}
+
+.playersLayout div.flexbox
+{
+   justify-content: space-around;
+}
+
+.playerBox
+{
+   margin: 10px;
 }
 
 /* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */
