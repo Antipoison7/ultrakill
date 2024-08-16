@@ -66,6 +66,7 @@ img.top-image {
 {
    color: white;
    font-family: UltraKillFont;
+   font-size: 0.9vw;
    display: grid;
    gap: 1%;
    text-wrap: nowrap;
@@ -306,7 +307,7 @@ img.top-image {
    padding: 0vw 2vw;
    border-radius: 0.4vw;
    font-family: UltrakillFont;
-   font-size: 150%;
+   font-size: 1.5vw;
    cursor: pointer;
 }
 
@@ -320,7 +321,7 @@ img.top-image {
    padding: 0vw 2vw;
    border-radius: 0.4vw;
    font-family: UltrakillFont;
-   font-size: 150%;
+   font-size: 1.5vw;
    cursor: pointer;
 }
 
@@ -334,7 +335,7 @@ img.top-image {
    padding: 0vw 2vw;
    border-radius: 0.4vw;
    font-family: UltrakillFont;
-   font-size: 150%;
+   font-size: 1.5vw;
    cursor: pointer;
 }
 
@@ -348,7 +349,7 @@ img.top-image {
    padding: 0vw 2vw;
    border-radius: 0.4vw;
    font-family: UltrakillFont;
-   font-size: 150%;
+   font-size: 1.5vw;
    cursor: pointer;
 }
 
@@ -403,6 +404,7 @@ img.top-image {
 .levelUserName p
 {
    font-family: UltrakillFont;
+   font-size: 0.7vw;
    color: white;
    margin:0px;
 }
@@ -416,6 +418,7 @@ img.top-image {
 .levelUserDiff p
 {
    font-family: UltrakillFont;
+   font-size: 0.8vw;
    color: white;
    margin:0px;
 }
@@ -438,13 +441,15 @@ img.top-image {
    background-color: rgb(0, 0, 0,0.5);
    border-radius: 2px;
    display: grid;
-   grid-template-columns: 10% 40% 21% 20%;
+   grid-template-columns: 10% 35% 21% 25%;
    gap: 0px 3%;
+   margin-right: 10px;
 }
 
 .levelContainer
 {
    overflow-y:scroll;
+   overflow-x: hidden;
    height: 200px;
 }
 
@@ -541,6 +546,44 @@ img.top-image {
 .playerBox
 {
    margin: 10px;
+}
+
+.playerBox p
+{
+   border: solid 1px white;
+   padding: 10px;
+   margin: 4px;
+}
+
+
+.playerProfile
+{
+   color: white;
+   background-color: rgba(0,0,0,0.5);
+   font-family: UltrakillFont;
+   font-size: 1vw;
+   padding:10px;
+   border-radius:5px;
+   width: 60%;
+}
+
+.playerProfile img
+{
+   display: block;
+   border-radius: 10px;
+   width: 10vw;
+   height: 10vw;
+}
+
+.playerProfile table
+{
+   color: white;
+   font-family: UltrakillFont;
+}
+
+.playerProfile th, td
+{
+   width: 5vw;
 }
 
 /* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */
