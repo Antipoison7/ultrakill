@@ -46,9 +46,16 @@ public class AddRunner implements Handler {
         html = html + "<body>";
         html = html + """
                 <div class="flexBox" style="justify-content:space-between; margin-bottom:10px;">
-                <a href="./"><button type="button" class="button">Back</button></a>
+                <a href="./runners.html"><button type="button" class="button">Back</button></a>
                 <h1 class='ultrakillTitleText'>-- Level Select --</h1>
                 <div style="width:15vw;height:4vw;padding: 0vw 2vw;"></div>
+                </div>
+                """;
+        
+        html = html + """
+                <div class="flexBox" style="justify-content:center;">
+                    <div class="settingChunk">
+                    </div>
                 </div>
                 """;
 

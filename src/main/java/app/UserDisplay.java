@@ -57,6 +57,41 @@ public class UserDisplay implements Handler {
             </div>
             """;
         
+        html = html + """
+                <div class="flexBox" style="justify-content: center;">
+                    <div class="playerProfile">
+                        <h1 class="ultrakillTitleText">-- Connor --</h1>
+
+                        <div class="flexBox" style="justify-content: center; gap:10px;">
+                            <img src="Pfp/Connor.jpg">
+                            <table>
+                                <caption>Best Times</caption>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Level</th>
+                                    <th>Time</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1-1</td>
+                                    <td>12:38.036</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>1-1</td>
+                                    <td>12:38.036</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>1-1</td>
+                                    <td>12:38.036</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                """;
+        
 
         
 
