@@ -39,6 +39,36 @@ public class NumberConversion
         return durationString;
     }
 
+    public String ToDurationSpecial(String userSeconds)
+    {
+        Double seconds = Double.parseDouble(userSeconds);
+        String durationString = "";
+
+        String Minutes = Integer.toString((int)(seconds / 60));
+        String Seconds = String.format("%06.3f",((double)(seconds % 60)));
+
+        if(userSeconds.equals("0"))
+        {
+            durationString = "Not Complete";
+        }
+        else
+        {
+                if(Minutes.length() == 1)
+            {
+                durationString = "0" + Minutes;
+            }
+            else
+            {
+                durationString = Minutes;
+            }
+
+            durationString = durationString + ":" + Seconds;
+        }
+        
+
+        return durationString;
+    }
+
     public String ToYoutube(String ytURL)
     {
         YouTubeHelper youTubeHelper = new YouTubeHelper();
