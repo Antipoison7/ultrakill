@@ -163,7 +163,7 @@ public class LevelMaker
     {
         generatedString = generatedString + "<div class='runTableContainer'>";
         generatedString = generatedString + """
-            <div style='grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7%;'>
+            <div style='grid-template-columns: 4% 5% 25% 16% 13% 8% 8% 8%;'>
                 <div>Rank</div>
                 <div>Pfp</div>
                 <div>Player</div>
@@ -177,7 +177,7 @@ public class LevelMaker
         for (AdvancedRun userRun : aRun)
         {
             generatedString = generatedString + "<a href='/userRuns.html?runId=" + userRun.getRunID() + "&prev=" + level + "'>";
-                generatedString = generatedString + "<div class='runTableContainerInstance' style='grid-template-columns: 4% 5% 25% 16% 13% 5% 7% 7%;'>";
+                generatedString = generatedString + "<div class='runTableContainerInstance' style='grid-template-columns: 4% 5% 25% 16% 13% 8% 8% 8%;'>";
                     generatedString = generatedString + "<div class='runTableContainerLevel'>" + counter + "</div>";
                     generatedString = generatedString + "<div><img src='" + userRun.getPfp() + "'></div>";
                     generatedString = generatedString + "<div>" + userRun.getName() + "</div>";
@@ -212,7 +212,7 @@ public class LevelMaker
             aRun = jdbc.getAllComplexRuns(level);
             generatedString = generatedString + "<div class='runTableContainer'>";
             generatedString = generatedString + """
-                <div style='grid-template-columns: 4% 5% 22% 14% 13% 5% 7% 7% 5% 10%;'>
+                <div style='grid-template-columns: 4% 5% 22% 13% 13% 5% 7% 7% 10% 5%;'>
                     <div>Rank</div>
                     <div>Pfp</div>
                     <div>Player</div>
@@ -437,7 +437,9 @@ public class LevelMaker
 
         RunnerDetails runner = jdbc.getUserDetails(runnerId);
 
-        // ArrayList<AdvancedRun> uRuns = jdbc.getUserBosses(runnerId);
+        ArrayList<AdvancedRun> uRuns = jdbc.getUserLevels(runnerId);
+
+        
 
     
         html = html + "<a href='./userDisplay.html?user=" + runnerId + "'>";
@@ -447,16 +449,16 @@ public class LevelMaker
         html = html + "        <h3>Boss Times</h3>";
         html = html + "        <div class='flexBox'>";
         html = html + "            <div>";
-        html = html + "                <p>1-4: 01:03.078</p>";
-        html = html + "                <p>2-4: 01:03.078</p>";
-        html = html + "                <p>3-2: 01:03.078</p>";
-        html = html + "                <p>4-4: 01:03.078</p>";
+        html = html + "                <p>" + uRuns.get(8).getLevelCode() + ": " + numbs.ToDurationSpecial(uRuns.get(8).getTime()) + "</p>";
+        html = html + "                <p>" + uRuns.get(12).getLevelCode() + ": " + numbs.ToDurationSpecial(uRuns.get(12).getTime()) + "</p>";
+        html = html + "                <p>" + uRuns.get(14).getLevelCode() + ": " + numbs.ToDurationSpecial(uRuns.get(14).getTime()) + "</p>";
+        html = html + "                <p>" + uRuns.get(18).getLevelCode() + ": " + numbs.ToDurationSpecial(uRuns.get(18).getTime()) + "</p>";
         html = html + "            </div>";
         html = html + "            <div>";
-        html = html + "                <p>5-4: 01:03.078</p>";
-        html = html + "                <p>6-2: 01:03.078</p>";
-        html = html + "                <p>7-4: 01:03.078</p>";
-        html = html + "                <p>p-1: 01:03.078</p>";
+        html = html + "                <p>" + uRuns.get(22).getLevelCode() + ": " + numbs.ToDurationSpecial(uRuns.get(22).getTime()) + "</p>"; 
+        html = html + "                <p>" + uRuns.get(24).getLevelCode() + ": " + numbs.ToDurationSpecial(uRuns.get(24).getTime()) + "</p>";
+        html = html + "                <p>" + uRuns.get(28).getLevelCode() + ": " + numbs.ToDurationSpecial(uRuns.get(28).getTime()) + "</p>";
+        html = html + "                <p>" + uRuns.get(29).getLevelCode() + ": " + numbs.ToDurationSpecial(uRuns.get(29).getTime()) + "</p>";
         html = html + "            </div>";
         html = html + "        </div>";
         html = html + "    </div>";
