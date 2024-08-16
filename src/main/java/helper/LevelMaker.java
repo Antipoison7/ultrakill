@@ -435,15 +435,15 @@ public class LevelMaker
         JDBCConnection jdbc = new JDBCConnection();
         NumberConversion numbs = new NumberConversion();
 
-        
+        RunnerDetails runner = jdbc.getUserDetails(runnerId);
 
         // ArrayList<AdvancedRun> uRuns = jdbc.getUserBosses(runnerId);
 
     
         html = html + "<a href='./userDisplay.html?user=" + runnerId + "'>";
         html = html + "    <div style='width:20vw' class='playerBox'>";
-        html = html + "        <h2>Connor Orders</h2>";
-        html = html + "        <img src='Pfp/Connor.jpg' width='40%'>";
+        html = html + "        <h2>" + runner.getName() + "</h2>";
+        html = html + "        <img src='" + runner.getPfp() + "' width='40%'>";
         html = html + "        <h3>Boss Times</h3>";
         html = html + "        <div class='flexBox'>";
         html = html + "            <div>";

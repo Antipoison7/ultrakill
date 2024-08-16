@@ -3,6 +3,8 @@ package app;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
+import org.eclipse.jetty.server.Authentication.User;
+
 import helper.BasicRun;
 import helper.NumberConversion;
 import helper.RunnerDetails;
@@ -647,7 +649,7 @@ public RunnerDetails getUserDetails(int userId) {
         statement.setQueryTimeout(30);
 
         // The Query
-        String query = "SELECT * FROM Country";
+        String query = "SELECT * FROM runners WHERE UserID = '" + userId + "';";
         
         // Get Result
         ResultSet results = statement.executeQuery(query);
@@ -655,11 +657,15 @@ public RunnerDetails getUserDetails(int userId) {
         // Process all of the results
         while (results.next()) {
             // Lookup the columns we need
-            String m49Code     = results.getString("m49code");
-            String name  = results.getString("countryName");
+            String UserID     = results.getString("UserID");
+            String Name     = results.getString("Name");
+            String Steamid     = results.getString("SteamId");
+            String DisplayName     = results.getString("DisplayName");
+            String ProfilePicture     = results.getString("ProfilePicture");
+            
 
             // Create a Country Object
-            details = new RunnerDetails("","","","","");
+            details = new RunnerDetails(UserID,Name,Steamid,DisplayName,ProfilePicture);
         }
 
         // Close the statement because we are done with it
@@ -682,4 +688,52 @@ public RunnerDetails getUserDetails(int userId) {
     // Finally we return all of the countries
     return details;
 }
+
+public int getRunnerCount() {
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+    int count = 0;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        // The Query
+        String query = "SELECT count(Name) AS runnerCount FROM Runners;";
+        
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            count     = results.getInt("runnerCount");            
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the countries
+    return count;
+}
+
 }

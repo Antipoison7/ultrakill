@@ -32,6 +32,7 @@ public class Runners implements Handler {
     @Override
     public void handle(Context context) throws Exception {
         LevelMaker elements = new LevelMaker();
+        JDBCConnection jdbc = new JDBCConnection();
         // Create a simple HTML webpage in a String
         String html = "<html>";
 
@@ -56,7 +57,7 @@ public class Runners implements Handler {
                 """;
 
         html = html + "<div class = 'playersLayout'>";
-        for(int i = 1; i <= 8; i++){
+        for(int i = 1; i <= jdbc.getRunnerCount(); i++){
         html = html + elements.getRunners(i);
         }
                         
