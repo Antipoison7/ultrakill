@@ -56,6 +56,7 @@ public class App {
         app.post(AddTimes.URL, new AddTimes());
         // app.post(PageST3B.URL, new PageST3B());
         app.post(Intermediate.URL, new Intermediate());
+        app.post(IntermediateUser.URL, new IntermediateUser());
         app.post(AddRunner.URL, new AddRunner());
     }
 
