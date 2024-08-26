@@ -2,6 +2,7 @@ package app;
 
 import java.util.ArrayList;
 
+import helper.BasicRun;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
@@ -39,6 +40,8 @@ public class AddTimes implements Handler {
         String Level = context.formParam("level");
         String Difficulty = context.formParam("Difficulty");
         String Exit = context.formParam("Exit");
+
+        JDBCConnection jdbc = new JDBCConnection();
         
 
 
@@ -69,11 +72,16 @@ public class AddTimes implements Handler {
 
                         <select name="Runner" id="Runners" required>
                             <option value="" selected disabled hidden>Runner Name</option>
-                            <option value="1">Connor</option>
-                            <option value="2">James</option>
-                            <option value="3">George</option>
-                            <option value="4">Ryan</option>
-                            <option value="5">AJ</option>
+                            """;
+
+                            ArrayList<Runner> aRunner = jdbc.getAllRunners();
+                                    
+                                for (Runner userRunner : aRunner)
+                                {
+                                    html = html + "<option value='" + userRunner.getRunnerType() + "'>" + userRunner.getRunnerDisplayName() + "</option>";
+                                }
+
+                                    html = html + """
                         </select>
                     </div>
 
