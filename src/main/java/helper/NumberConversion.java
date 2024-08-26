@@ -9,8 +9,11 @@ public class NumberConversion
     {
         Double generatedTime = 0.0;
 
-        Double minutes = Double.parseDouble(TimeCode.substring(1,2));
+        Double minutes = Double.parseDouble(TimeCode.substring(0,2));
         Double secondsMs = Double.parseDouble(TimeCode.substring(3,9));
+
+        System.out.println(minutes);
+        System.out.println(secondsMs);
 
         generatedTime = (minutes * 60) + secondsMs;
 
