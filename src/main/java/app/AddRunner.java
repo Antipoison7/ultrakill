@@ -74,7 +74,7 @@ public class AddRunner implements Handler {
                         </div>
     
                         <div>
-                            <input type="submit" value="Submit Run" class="button">
+                            <input type="submit" value="Register User" class="button">
                         </div>
     
                     </form>
