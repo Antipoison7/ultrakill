@@ -64,6 +64,31 @@ public class IntermediateUser implements Handler {
         html = html + "<head>" + 
                "<title>Please Dont Break</title>";
 
+        html = html + """
+                <style>
+                    a{
+                    font-family:UltrakillFont;
+                    font-size: 1.5vw;
+                    }
+
+                    a:link {
+                    color: white;
+                    }
+
+                    a:visited {
+                    color: white;
+                    }
+
+                    a:hover {
+                    color: lime;
+                    }
+
+                    a:active {
+                    color: red;
+                    }
+                </style>
+                """;
+
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
         // html = html + "<meta http-equiv='refresh' content='5'; url ='./'/>";
@@ -73,8 +98,8 @@ public class IntermediateUser implements Handler {
         html = html + "<body>";
 
         html = html + """
-                <p><a href="/">Thanks for registering. To set a profile picture or request other changes, message Connor on discord @antipoison or email at orders.connor@gmail.com</a></p>
-                <p><a href="/">Click the text to go back to the home page</a></p>
+                <a href="/"><p>Thanks for registering. To set a profile picture or request other changes, message Connor on discord @antipoison or email at orders.connor@gmail.com</p></a>
+                <a href="/"><p>Click the text to go back to the home page</p></a>
                 """;
 
         // html = html + "<p>" + Runner + "</p>";
