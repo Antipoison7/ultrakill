@@ -806,4 +806,110 @@ public ArrayList<AdvancedRun> getUserLevels(int RunnerId) {
     return runs;
 }
 
+public void addARunner(Runner submittedRunner) {
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+    NumberConversion numbs = new NumberConversion();
+
+    String query = "";
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        // System.out.println("Type = '"+ submittedRun.getType() + "'");
+        
+        switch(submittedRunner.getRunnerType())
+        {
+            case 1:
+            query = "INSERT INTO Runners (UserID, Name, DisplayName, SteamId) VALUES ((SELECT count(Name)+1 AS runnerCount FROM Runners),'" + submittedRunner.getRunnerName() + "','" + submittedRunner.getRunnerDisplayName() + "','" + submittedRunner.getSteamID() + "');";
+            break;
+
+            case 2:
+            query = "INSERT INTO Runners (UserID, Name, DisplayName, SteamId) VALUES ((SELECT count(Name)+1 AS runnerCount FROM Runners),'" + submittedRunner.getRunnerName() + "','" + submittedRunner.getRunnerDisplayName() + "','n/a');";
+            break;
+        }
+        
+        statement.execute(query);            
+        
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+}
+
+public ArrayList<Runner> getAllRunners() {
+    // Create the ArrayList of Country objects to return
+    ArrayList<Runner> runners = new ArrayList<Runner>();
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        // The Query
+        String query = "SELECT * FROM Runners;";
+        
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            String Runner     = results.getString("Name");
+            String DisplayName  = results.getString("DisplayName");
+            String SteamID  = results.getString("SteamId");
+            int runnerID = results.getInt("UserID");
+
+            // Create a Country Object
+            Runner runner = new Runner(Runner, DisplayName, SteamID, runnerID);
+
+            // Add the Country object to the array
+            runners.add(runner);
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the countries
+    return runners;
+}
+
 }
