@@ -31,16 +31,11 @@ public class IntermediateUser implements Handler {
     public void handle(Context context) throws Exception {
 
         //Java Variables
-        String Runner = context.formParam("Runner");
-        String Category = context.formParam("Category");
-        String Time = context.formParam("timeAchieved");
-        String Video = context.formParam("videoLink");
-        String Comment = context.formParam("runnerComment");
-        String Level = context.formParam("level");
-        String Difficulty = context.formParam("Difficulty");
-        String Exit = context.formParam("Exit");
+        String Runner = context.formParam("runnerName");
+        String Display = context.formParam("runnerDisplayName");
+        String SteamID = context.formParam("runnerSteamId");
 
-        Speedrun theRun;
+        Runner theRunner;
 
         // System.out.println("Video = '" + Video + "'");
         // System.out.println("Comment = '" + Comment + "'");
@@ -49,34 +44,18 @@ public class IntermediateUser implements Handler {
         // System.out.println("Does Comment = "+ !Comment.equals(""));
 
         
-        if(!Video.equals("")) // Has a video
+        if(!SteamID.equals("")) // Has a video
         {
-            if(!Comment.equals("")) // Has A comment and a video
-            {
-                theRun = new Speedrun(Runner, Category, Time, Video, Comment,Level, Difficulty, Exit, 1);
-            }
-            else // Has No comment and a video
-            {
-                theRun = new Speedrun(Runner, Category, Time, Video, Comment,Level, Difficulty, Exit, 2);
-            }
-            
+            theRunner = new Runner(Runner, Display, SteamID, 1);
         }
         else // Has no video
         {
-            if(!Comment.equals("")) // Has A comment and no video
-            {
-                theRun = new Speedrun(Runner, Category, Time, Video, Comment,Level, Difficulty, Exit, 3);
-            }
-
-            else // Has no comment and no video
-            {
-                theRun = new Speedrun(Runner, Category, Time, Video, Comment,Level, Difficulty, Exit, 4);
-            }
+            theRunner = new Runner(Runner, Display, SteamID, 2);
         }
 
         JDBCConnection jdbc = new JDBCConnection();
     
-        jdbc.addARun(theRun);
+        jdbc.addARunner(theRunner);
         
         // Create a simple HTML webpage in a String
         String html = "<html>";
@@ -91,10 +70,11 @@ public class IntermediateUser implements Handler {
         html = html + "</head>";
 
         // Add the body
-        html = html + "<body onload='redirectScript()'>";
+        html = html + "<body>";
 
         html = html + """
-                <p><a href="/">Damn, if you see this and it doesn't load, click this. Do not refresh the page.</a></p>
+                <p><a href="/">Thanks for registering. To set a profile picture or request other changes, message Connor on discord @antipoison or email at orders.connor@gmail.com</a></p>
+                <p><a href="/">Click the text to go back to the home page</a></p>
                 """;
 
         // html = html + "<p>" + Runner + "</p>";
@@ -105,20 +85,6 @@ public class IntermediateUser implements Handler {
         // html = html + "<p>" + Level + "</p>";
         // html = html + "<p>" + Difficulty + "</p>";
         // html = html + "<p>" + Exit + "</p>";
-
-        html = html + """
-                <script>
-                    function redirectScript()
-                    {
-                        sleep(1000);
-                        window.location.replace("/");
-                    }
-
-                    function sleep(ms) {
-                        return new Promise(resolve => setTimeout(resolve, ms));
-                    }
-                </script>
-                """;
 
         // Finish the HTML webpage
         html = html + "</body>" + "</html>";
