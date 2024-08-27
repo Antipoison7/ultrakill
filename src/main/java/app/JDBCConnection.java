@@ -912,4 +912,131 @@ public ArrayList<Runner> getAllRunners() {
     return runners;
 }
 
+public ArrayList<LevelTemplate> getLevelsCompleted(String userID) {
+    // Create the ArrayList of Country objects to return
+    ArrayList<LevelTemplate> levels = new ArrayList<LevelTemplate>();
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        // The Query
+        String query = "SELECT runs.LevelCode, Level.LevelName FROM Runs LEFT JOIN Level ON Level.LevelCode = Runs.LevelCode WHERE Runner = '" + userID + "' GROUP BY runs.LevelCode Order By runs.LevelCode;";
+        
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            String levelCode     = results.getString("LevelCode");
+            String levelName = results.getString("LevelName");
+
+            LevelTemplate level = new LevelTemplate(levelCode, levelName);
+
+            // Add the Country object to the array
+            levels.add(level);
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the countries
+    return levels;
+}
+
+public ArrayList<AdvancedRun> getRunsForLevel(String userID, String LevelCode) {
+    // Create the ArrayList of Country objects to return
+    ArrayList<AdvancedRun> levels = new ArrayList<AdvancedRun>();
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        // The Query
+        String query = "SELECT runs.rowID as runID, Runners.ProfilePicture, Runners.UserID as Name, runs.Time, Difficulty.DifficultyName, Difficulty.DifficultyDescription, runs.category, runs.comment, runs.video, runs.LevelCode, Level.LevelName, runs.Exit\r\n" + //
+                        "FROM runs\r\n" + //
+                        "LEFT JOIN Runners \r\n" + //
+                        "ON runners.UserID = runs.Runner\r\n" + //
+                        "LEFT JOIN Difficulty\r\n" + //
+                        "ON difficulty.DifficultyId = runs.Difficulty\r\n" + //
+                        "LEFT JOIN Level\r\n" + //
+                        "ON level.LevelCode = runs.LevelCode\r\n" + //
+                        "WHERE runs.LevelCode = \"" + LevelCode + "\"\r\n" + //
+                        "AND runs.Runner = \"" + userID + "\";";
+        
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            int RunID = results.getInt("runID");
+            String UserProfile = results.getString("ProfilePicture");
+            String Name = results.getString("Name");
+            String Time = results.getString("Time");
+            String Difficulty = results.getString("DifficultyName");
+            String DifficultyDescription = results.getString("DifficultyDescription");
+            String Category = results.getString("Category");
+            String Comment = results.getString("Comment");
+            String Video = results.getString("Video");
+            String LevelCodeVal = results.getString("LevelCode");
+            String LevelName = results.getString("LevelName");
+            String Exit = results.getString("Exit");
+
+            AdvancedRun level = new AdvancedRun(RunID,UserProfile,Name,Time,Difficulty,DifficultyDescription,Category,Comment,Video,LevelCodeVal,LevelName,Exit);
+
+            // Add the Country object to the array
+            levels.add(level);
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the countries
+    return levels;
+}
+
 }
