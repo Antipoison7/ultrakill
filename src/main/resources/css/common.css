@@ -586,6 +586,50 @@ img.top-image {
    width: 5vw;
 }
 
+.profileLevelGrid
+{
+   display: grid;
+   grid-template-columns: 20% 10% 10% 10% 10% 20% 20%;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.profileLevelGrid:hover
+{
+   display: grid;
+   grid-template-columns: 20% 10% 10% 10% 10% 20% 20%;
+   background-color: #210000;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.profileLevelGrid img
+{
+   width: 2vw;
+   height: 2vw;
+}
+
+.profileTableContainer
+{
+   display: block;
+   border: solid white 3px;
+   border-radius: 10px;
+   margin: 0px 60px;
+   padding: 0px 10px;
+}
+
+a.nostyle:link {
+   text-decoration: inherit;
+   color: inherit;
+   cursor: pointer;
+}
+
+a.nostyle:visited {
+   text-decoration: inherit;
+   color: inherit;
+   cursor:pointer;
+}
+
 /* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */
 /* Style the top navigation bar */
 .topnav {
