@@ -46,6 +46,7 @@ public class App {
         app.get(Runners.URL, new Runners());
         app.get(Intermediate.URL, new Intermediate());
         app.get(RunDisplay.URL, new RunDisplay());
+        app.get(RunDisplayUser.URL, new RunDisplayUser());
         app.get(AddRunner.URL, new AddRunner());
         app.get(UserDisplay.URL, new UserDisplay());
 
