@@ -467,4 +467,93 @@ public class LevelMaker
         return html;
     }
 
+    public String getProfileLevels(String userID)
+    {
+        String html = "";
+
+        JDBCConnection jdbc = new JDBCConnection();
+        NumberConversion numbs = new NumberConversion();
+        
+        ArrayList<LevelTemplate> levelArray = jdbc.getLevelsCompleted(userID);
+        ArrayList<AdvancedRun> level = new ArrayList<AdvancedRun>();
+
+        for (LevelTemplate userLevels : levelArray)
+        {
+            html = html + "<div style='margin-bottom: 30px;'>";
+
+            level = jdbc.getRunsForLevel(userID, userLevels.getLevelCode());
+
+            html = html + "    <h1 class='ultrakillTitleText' style='color: red;'>-- " + userLevels.getLevelCode() + " : " + userLevels.getLevelName() + " --</h1>";
+
+            html = html + "    <div style='display: grid; grid-template-columns: 20% 10% 10% 10% 10% 20% 20%; align-items: center; justify-content: space-between; margin: 0px 70px;'>";
+                html = html + "        <p style='font-size:0.8vw; color: darkred;'>Time</p>";
+                html = html + "        <p style='font-size:0.8vw; color: darkred;'>Category</p>";
+                html = html + "        <p style='font-size:0.8vw; color: darkred;'>OOB</p>";
+                html = html + "        <p style='font-size:0.8vw; color: darkred;'>Comment</p>";
+                html = html + "        <p style='font-size:0.8vw; color: darkred;'>Video</p>";
+                html = html + "        <p style='font-size:0.8vw; color: darkred;'>Difficulty</p>";
+                html = html + "        <p style='font-size:0.8vw; color: darkred;'>Exit</p>";
+                html = html + "    </div>";
+
+                html = html + "<div class='profileTableContainer'>";
+            for(AdvancedRun levelReturn : level)
+            {
+
+                html = html + "<a href='/userRunsB.html?runId=" + levelReturn.getRunID() + "&prev=" + levelReturn.getName() + "' class='nostyle'>";
+                html = html + "    <div class='profileLevelGrid'>";
+                html = html + "        <p>" + numbs.ToDuration(levelReturn.getTime()) + "</p>";
+                if(levelReturn.getCategory().substring(0, 1).equals("A"))
+                {
+                    html = html + "        <p>Any%</p>";
+                }
+                else if(levelReturn.getCategory().substring(0, 1).equals("P"))
+                {
+                    html = html + "        <p style='color:gold;'>P%</p>";
+                }
+                else if(levelReturn.getCategory().substring(0, 1).equals("N"))
+                {
+                    html = html + "        <p style='color:lime;'>NoMo</p>";
+                }
+
+                if(levelReturn.getCategory().equals("Any% OOB")||levelReturn.getCategory().equals("P% OOB")||levelReturn.getCategory().equals("NoMo OOB"))
+                {
+                    html = html + "<img src='OutOfBounds.png' alt='Out Of Bounds'>";
+                }
+                else
+                {
+                    html = html + "<div style='width: 2vw; height: 2vw;'></div>";
+                }
+
+                if(levelReturn.getComment() != null)
+                {
+                    html = html + "        <img src='Comment.png' alt='Contains Comment'>";
+                }
+                else
+                {
+                    html = html + "<div style='width: 2vw; height: 2vw;'></div>";
+                }
+                
+                if(levelReturn.getVideo() != null)
+                {
+                    html = html + "        <img src='Video.png' alt='Contains Video'>";
+                }
+                else
+                {
+                    html = html + "<div style='width: 2vw; height: 2vw;'></div>";
+                }
+                
+                html = html + "        <p>" + levelReturn.getDifficulty() + "</p>";
+                html = html + "        <p>" + levelReturn.getExit() + "</p>";
+                html = html + "    </div>";
+                html = html + "</a>";
+
+            }
+
+            html = html + "</div>";
+            html = html + "</div>";
+        }
+
+        return html;
+    }
+
 }
