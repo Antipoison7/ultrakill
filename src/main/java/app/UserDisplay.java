@@ -7,6 +7,8 @@ import io.javalin.http.Handler;
 
 import helper.LevelMaker;
 import helper.NumberConversion;
+import helper.RunnerDetails;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -32,9 +34,13 @@ public class UserDisplay implements Handler {
     @Override
     public void handle(Context context) throws Exception {
         JDBCConnection jdbc = new JDBCConnection();
-        AdvancedRun userRun = new AdvancedRun(0,"","","","","","","","","","","");
+        LevelMaker creator = new LevelMaker();
         NumberConversion converter = new NumberConversion();
-        userRun = jdbc.getIndividualRun(context.queryParam("runId"));
+        String userID = context.queryParam("user");
+
+        RunnerDetails runner = jdbc.getUserDetails(Integer.parseInt(userID));
+
+
         // Create a simple HTML webpage in a String
         String html = "<html>";
 
@@ -60,14 +66,24 @@ public class UserDisplay implements Handler {
         html = html + """
                 <div class="flexBox" style="justify-content: center;">
                     <div class="playerProfile">
-                        <h1 class="ultrakillTitleText">-- Connor --</h1>
+                        <h1 class="ultrakillTitleText">-- 
+                        """;
+                        html = html + runner.getDisplayName(); 
+                        html = html + """
+                         --</h1>
 
                         <div class="flexBox" style="justify-content: center; gap:10px;">
-                            <img src="Pfp/Connor.jpg">
+                            <img src="
+                            """;
+                            html = html + runner.getPfp();
+                            html = html + """
+                            ">
                         </div>
-                        <div>
-                            <h1 class="ultrakillTitleText">-- Level 1 --</h1>
-                        </div>
+                        """;
+
+                        html = html + creator.getProfileLevels(userID);
+                                
+            html = html + """
                     </div>
                 </div>
                 """;
