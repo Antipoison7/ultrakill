@@ -991,7 +991,7 @@ public ArrayList<AdvancedRun> getRunsForLevel(String userID, String LevelCode) {
                         "LEFT JOIN Level\r\n" + //
                         "ON level.LevelCode = runs.LevelCode\r\n" + //
                         "WHERE runs.LevelCode = \"" + LevelCode + "\"\r\n" + //
-                        "AND runs.Runner = \"" + userID + "\";";
+                        "AND runs.Runner = \"" + userID + "\" ORDER BY Time;";
         
         // Get Result
         ResultSet results = statement.executeQuery(query);
