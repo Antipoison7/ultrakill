@@ -40,9 +40,6 @@ public class AddRunner implements Handler {
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
         html = html + "</head>";
 
-        // Add the body
-        html = html + "<body>";
-
         html = html + "<body>";
         html = html + """
                 <div class="flexBox" style="justify-content:space-between; margin-bottom:10px;">
