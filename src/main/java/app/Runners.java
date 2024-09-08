@@ -51,7 +51,7 @@ public class Runners implements Handler {
         html = html + """
                 <div class="flexBox" style="justify-content:space-between; margin-bottom:10px;">
                 <a href="./"><button type="button" class="button">Back</button></a>
-                <h1 class='ultrakillTitleText'>-- Level Select --</h1>
+                <h1 class='ultrakillTitleText'>-- Runners --</h1>
                 <a href="./addRunner.html"><button type="button" class="button">+ Add Runner</button></a>
                 </div>
                 """;
